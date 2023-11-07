@@ -11914,7 +11914,7 @@ main .home-container {
 }
 main .home-container .article1 {
   grid-area: article1;
-  background-image: url("./assets/img/home.jpg");
+  background-image: url("../img/home.jpg");
   background-repeat: no-repeat;
   background-size: contain;
 }
