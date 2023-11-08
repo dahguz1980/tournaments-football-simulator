@@ -1,5 +1,9 @@
 @import "./utilities/variables";
+@import "./utilities/mixins";
 @import "./vendor/bootstrap";
 @import "./base/tipography";
 @import "./base/base";
+@import "./layout/grid";
+@import "./layout/footer";
+@import "./layout/header";
 @import "./pages/index";

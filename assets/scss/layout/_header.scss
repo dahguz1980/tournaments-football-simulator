@@ -1,0 +1,38 @@
+header {
+
+    nav {
+
+        .navbar-toggler {
+            border:0px;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-nav .nav-link.show {
+            color: $light;
+        }
+
+        .with-logo {
+            min-width: 200px;
+            font-family: 'Graduate', serif;
+        }
+        
+        .white-ball {
+            filter: invert(1);
+        }
+    }
+
+    @include media-query  ($layout-breakpoint-xxs){ 
+        .text-xxs {
+            font-size: 12px;
+        }
+    }
+    
+    @include media-query  ($layout-breakpoint-xs){ 
+        .text-xxs {
+            font-size: 16px;
+        }
+    }
+}

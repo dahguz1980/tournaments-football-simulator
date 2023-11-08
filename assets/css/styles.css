@@ -3343,17 +3343,17 @@ textarea.form-control-lg {
   --bs-dropdown-spacer: 0.125rem;
   --bs-dropdown-font-size: 1rem;
   --bs-dropdown-color: var(--bs-body-color);
-  --bs-dropdown-bg: var(--bs-body-bg);
+  --bs-dropdown-bg: #100551;
   --bs-dropdown-border-color: var(--bs-border-color-translucent);
   --bs-dropdown-border-radius: var(--bs-border-radius);
-  --bs-dropdown-border-width: var(--bs-border-width);
-  --bs-dropdown-inner-border-radius: calc(var(--bs-border-radius) - var(--bs-border-width));
+  --bs-dropdown-border-width: 0;
+  --bs-dropdown-inner-border-radius: calc(var(--bs-border-radius) - 0);
   --bs-dropdown-divider-bg: var(--bs-border-color-translucent);
   --bs-dropdown-divider-margin-y: 0.5rem;
   --bs-dropdown-box-shadow: var(--bs-box-shadow);
-  --bs-dropdown-link-color: var(--bs-body-color);
-  --bs-dropdown-link-hover-color: var(--bs-body-color);
-  --bs-dropdown-link-hover-bg: var(--bs-tertiary-bg);
+  --bs-dropdown-link-color: #fcf9f9;
+  --bs-dropdown-link-hover-color: #fcf9f9;
+  --bs-dropdown-link-hover-bg: #100551;
   --bs-dropdown-link-active-color: #fff;
   --bs-dropdown-link-active-bg: #100551;
   --bs-dropdown-link-disabled-color: var(--bs-tertiary-color);
@@ -3877,7 +3877,7 @@ textarea.form-control-lg {
   --bs-navbar-toggler-padding-y: 0.25rem;
   --bs-navbar-toggler-padding-x: 0.75rem;
   --bs-navbar-toggler-font-size: 1.25rem;
-  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23fcf9f9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   --bs-navbar-toggler-border-color: rgba(var(--bs-emphasis-color-rgb), 0.15);
   --bs-navbar-toggler-border-radius: var(--bs-border-radius);
   --bs-navbar-toggler-focus-width: 0.25rem;
@@ -11859,13 +11859,6 @@ textarea.form-control-lg {
 body {
   font-family: "Montserrat", sans-serif;
 }
-body header nav .with-logo {
-  width: 300px;
-  font-family: "Graduate", serif;
-}
-body header nav .white-ball {
-  filter: invert(1);
-}
 body h1, body .h1 {
   font-family: "Graduate", serif;
   text-transform: uppercase;
@@ -11890,33 +11883,100 @@ body h6, body .h6 {
   font-family: "Graduate", serif;
   text-transform: uppercase;
 }
-body footer {
-  height: 300px;
+
+.home-container {
+  display: grid;
+  min-height: 1vh;
+}
+@media (min-width: 0) {
+  .home-container {
+    grid-template-areas: "article1" "article2" "article3";
+    grid-template-rows: 429px 1fr 1fr;
+    grid-template-columns: 260px;
+  }
+}
+@media (min-width: 370px) {
+  .home-container {
+    grid-template-columns: 360px;
+  }
+}
+@media (min-width: 520px) {
+  .home-container {
+    grid-template-columns: 490px;
+  }
+}
+@media (min-width: 768px) {
+  .home-container {
+    grid-template-columns: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .home-container {
+    grid-template-rows: 429px 1.5fr 1fr;
+    grid-template-columns: 900px;
+  }
+}
+@media (min-width: 1200px) {
+  .home-container {
+    grid-template-areas: "article1 article2" "article3 article2";
+    grid-template-rows: 429px 1fr;
+    grid-template-columns: 800px 350px;
+  }
+}
+
+footer {
+  height: 405px;
   border-top: 5px solid #ff635b;
 }
-body footer p {
+@media (min-width: 1200px) {
+  footer {
+    height: 300px;
+  }
+}
+footer p {
   font-size: 12px;
 }
-body footer .row {
+footer .row {
   margin-left: 0;
   margin-right: 0;
   padding: 0;
 }
-body footer ul li {
+footer ul li {
   list-style: none;
 }
 
-main .home-container {
-  display: grid;
-  grid-template-areas: "article1 article2" "article3 article2";
-  grid-template-rows: 429px 1fr;
-  grid-template-columns: 800px 350px;
+header nav .navbar-toggler {
+  border: 0px;
 }
+header nav .navbar-toggler:focus {
+  box-shadow: none;
+}
+header nav .navbar-nav .nav-link.show {
+  color: #fcf9f9;
+}
+header nav .with-logo {
+  min-width: 200px;
+  font-family: "Graduate", serif;
+}
+header nav .white-ball {
+  filter: invert(1);
+}
+@media (min-width: 0) {
+  header .text-xxs {
+    font-size: 12px;
+  }
+}
+@media (min-width: 370px) {
+  header .text-xxs {
+    font-size: 16px;
+  }
+}
+
 main .home-container .article1 {
   grid-area: article1;
   background-image: url("../img/home.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 main .home-container .article1 .home-phrase {
   color: #fcf9f9;
@@ -11941,9 +12001,20 @@ main .home-container .article2 {
   box-shadow: inset 6px 0px 20px -10px gray;
   border-top: 5px solid #ff635b;
 }
+@media (min-width: 0) {
+  main .home-container .article2 .btn {
+    font-size: 14px;
+  }
+}
 main .home-container .article3 {
   grid-area: article3;
   border-top: 5px solid #ff635b;
+}
+@media (min-width: 0) {
+  main .home-container .article3 img {
+    width: 250px;
+    height: 250px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

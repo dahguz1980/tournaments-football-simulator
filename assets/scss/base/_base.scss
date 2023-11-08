@@ -2,18 +2,6 @@ body {
 
     font-family: 'Montserrat', sans-serif;
 
-    header {
-        nav {
-            .with-logo {
-                width: 300px;
-                font-family: 'Graduate', serif;
-            }
-            
-            .white-ball {
-                filter: invert(1);
-            }
-        }
-    }
 
     @each $title in 1,2,3,4,5,6 {
         h#{$title} {
@@ -22,25 +10,6 @@ body {
         }
     }
 
-    footer {
-        height: 300px;
-        border-top:  5px solid $secondary;
-
-        p {
-            font-size: 12px;
-        }
-
-        .row {
-            margin-left: 0;
-            margin-right: 0;
-            padding: 0;
-        }
-
-        ul {
-            li {
-                list-style: none;
-            }
-        }
-    }
+    
 }
 

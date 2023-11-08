@@ -14,3 +14,18 @@ $navbar-light-link-color: $light;
 $navbar-light-active-color: #ff635b;
 $navbar-light-hover-color: $light;
 $navbar-light-color: $light;
+
+// breakpoints
+$layout-breakpoint-xxs: 0;
+$layout-breakpoint-xs: 370px;
+$layout-breakpoint-s: 520px;
+$layout-breakpoint-m: 768px;
+$layout-breakpoint-lg: 992px;
+$layout-breakpoint-xl: 1200px;
+
+// navbar-toggler-icon color
+$navbar-light-icon-color: $light;
+$dropdown-bg: $primary;
+$dropdown-link-color: $light;
+$dropdown-border-width:0;
+$dropdown-link-hover-bg: $primary;

@@ -1,0 +1,27 @@
+@mixin media-query($breakpoint) {
+    @if $breakpoint == $layout-breakpoint-xxs{
+        @media (min-width: #{$layout-breakpoint-xxs}) {
+            @content;
+          }
+    } @else if $breakpoint == $layout-breakpoint-xs {
+        @media (min-width: #{$layout-breakpoint-xs }) {
+            @content;
+          }
+    } @else if $breakpoint == $layout-breakpoint-s {
+        @media (min-width: #{$layout-breakpoint-s }) {
+            @content;
+          }
+    } @else if $breakpoint == $layout-breakpoint-m {
+        @media (min-width: #{$layout-breakpoint-m }) {
+            @content;
+          }
+    } @else if $breakpoint == $layout-breakpoint-lg {
+        @media (min-width: #{$layout-breakpoint-lg }) {
+            @content;
+          }
+    } @else if $breakpoint == $layout-breakpoint-xl {
+        @media (min-width: #{$layout-breakpoint-xl }) {
+            @content;
+          }
+    }
+}

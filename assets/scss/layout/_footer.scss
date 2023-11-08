@@ -1,0 +1,28 @@
+footer {
+
+    height: 405px;
+
+    @include media-query  ($layout-breakpoint-xl){ 
+        height: 300px;
+    }
+
+    border-top:  5px solid $secondary;
+
+    p {
+        font-size: 12px;
+    }
+
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+
+    ul {
+        li {
+            list-style: none;
+        }
+    }
+
+    
+}

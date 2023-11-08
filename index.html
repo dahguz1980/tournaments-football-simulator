@@ -12,11 +12,11 @@
     <div class="d-flex flex-column justify-content-between">
         <header>
             <nav class="navbar navbar-expand-lg bg-primary">
-                <div class="container-fluid">
+                <div class="container-fluid m-0 p-1">
                     <a class="navbar-brand d-flex align-items-center justify-content-evenly with-logo" href="#">
                         <img src="./assets/img/logo.png" alt="Simulador de Torneos" width="40" height="40"
                             class="d-inline-block align-text-top">
-                        Simulador de Torneos
+                        <span class="text-xxs">Simulador de Torneos</span>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -24,16 +24,16 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-xxs align-items-center">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">Inicio</a>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown text-center">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Simuladores
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu text-xxs text-center" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="#">Eurocopa</a></li>
                                     <li><a class="dropdown-item" href="#">Copa América</a></li>
                                 </ul>
@@ -53,7 +53,7 @@
                         <div class="phrase3">vencerá</div>
                     </div>
                 </article>
-                <article class="article2 bg-primary d-flex flex-column align-items-center justify-content-evenly">
+                <article class="article2 bg-primary d-flex flex-column  align-items-center justify-content-evenly">
                     <h1 class="text-light mt-3">Bienvenidos</h1>
                     <img src="./assets/img/welcome-simulator.png" width="250px" height="101">
                     <p class="text-light p-4 text-center">
@@ -68,7 +68,7 @@
                     <button class="btn btn-secondary w-50">Copa América</button>
 
                 </article>
-                <article class="article3  d-flex align-items-center">
+                <article class="article3  d-flex align-items-center justify-content-center flex-wrap flex-lg-nowrap flex-xl-nowrap">
                     <img width="350" height="350" src="./assets/img/tournament-simulator.png" alt="Simulador de Torneos">
                     <div class="d-flex justify-content-center ">
                         <p class="text-center p-3">Ésta aplicación de simulación de resultados de torneos de fútbol te
@@ -87,48 +87,51 @@
         </main>
 
         <footer class="bg-dark d-flex flex-column justify-content-center">
-            <div class="row text-light text-center mb-3">
-                <h6 class="col-4">Desarrollado Por</h6>
-                <h6 class="col-4">Contacto</h6>
-                <h6 class="col-4">Sígueme</h6>
-            </div>
-
             <div class="row text-light text-center">
-                <p class="col-4 ">Dahyna Guzman</p>
-                <div class="row col-4">
-                    <p class="col-6 d-flex justify-content-end align-items-center"><i
-                            class="fa fa-envelope text-secondary p-2"></i> soporte@dahynaguzmanlabs.cl</p>
-                    <p class="col-6 d-flex justify-content-start align-items-center"><i
-                            class="fa fa-globe text-secondary p-2"></i>&nbsp;https://www.dahynaguzmanlabs.cl</p>
-                    <p class="col-6 d-flex justify-content-end align-items-center"><i
-                            class="fa fa-location-dot text-secondary p-2"></i>&nbsp;Santiago de Chile, Chile</p>
-                    <p class="col-6 d-flex justify-content-start align-items-center"><i
-                            class="fa fa-phone text-secondary p-2"></i>&nbsp;+56 9 6663 0274</p>
+                <div class="col-12 col-xl-4">
+                    <h6 >Desarrollado Por</h6>
+                    <p>Dahyna Guzman</p>
                 </div>
-                <div class="col-4 row text-center d-flex justify-content-center">
-                    <div class="col-6">
-                        <ul class="row">
-                            <li class="col-3">
-                                <a>
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li class="col-3">
-                                <a>
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li class="col-3">
-                                <a>
-                                    <i class="fa fa-instagram"></i>
-                                </a>
-                            </li>
-                            <li class="col-3">
-                                <a>
-                                    <i class="fa-brands fa-x-twitter"></i>
-                                </a>
-                            </li>
-                        </ul>
+                <div class="col-12 col-xl-4">
+                    <h6>Contacto</h6>
+                    <div class="row">
+                        <p class="col-12 col-xl-6 d-flex flex-xl-row justify-content-center justify-content-xl-end align-items-center"><i
+                                class="fa fa-envelope text-secondary p-2"></i> soporte@dahynaguzmanlabs.cl</p>
+                        <p class="col-12 col-xl-6 d-flex justify-content-center justify-content-xl-start align-items-center"><i
+                                class="fa fa-globe text-secondary p-2"></i>&nbsp;https://www.dahynaguzmanlabs.cl</p>
+                        <p class="col-12 col-xl-6 d-flex justify-content-center justify-content-xl-end align-items-center"><i
+                                class="fa fa-location-dot text-secondary p-2"></i>&nbsp;Santiago de Chile, Chile</p>
+                        <p class="col-12 col-xl-6 d-flex justify-content-center justify-content-xl-start align-items-center"><i
+                                class="fa fa-phone text-secondary p-2"></i>&nbsp;+56 9 6663 0274</p>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-4">
+                    <h6>Sígueme</h6>
+                    <div class="text-center d-flex justify-content-center">
+                        <div>
+                            <ul class="row">
+                                <li class="col-3">
+                                    <a>
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li class="col-3">
+                                    <a>
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="col-3">
+                                    <a>
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li class="col-3">
+                                    <a>
+                                        <i class="fa-brands fa-x-twitter"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -142,7 +145,7 @@
 
     <script src="./assets/js/scripts.js" crossorigin="anonymous"></script>
     <script>
-        menu()
+      //  menu()
     </script>
 </body>
 

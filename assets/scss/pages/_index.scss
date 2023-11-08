@@ -1,20 +1,12 @@
 main { 
     
     .home-container {
-        display: grid;
-
-        grid-template-areas: "article1 article2"
-                         "article3 article2"; 
-                         
-        grid-template-rows: 429px 1fr;
-        grid-template-columns: 800px 350px;
-
 
         .article1 {
             grid-area: article1;
             background-image: url("../img/home.jpg");
             background-repeat: no-repeat;
-            background-size: contain;
+            background-size: cover;
 
             .home-phrase {
                 color:$light;
@@ -43,11 +35,26 @@ main {
             grid-area: article2;
             box-shadow: inset 6px 0px 20px -10px gray;
             border-top:  5px solid $secondary;
+
+            @include media-query  ($layout-breakpoint-xxs){ 
+                .btn {
+                    font-size: 14px;
+                }
+            }  
         }
     
         .article3 {
             grid-area: article3;
             border-top:  5px solid $secondary;
+
+            @include media-query  ($layout-breakpoint-xxs){ 
+                img {
+                    width: 250px;
+                    height: 250px;
+                }
+            }
+
+
         }
     }
 }
