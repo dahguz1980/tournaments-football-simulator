@@ -2,6 +2,9 @@ const removeAccents = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 } 
 
+let qty_teams_clasified = 0;
+let qty_third_teams_clasified = 0;
+
 class Simulator  {
     constructor (name, groups) {
         this.name = name;
@@ -143,67 +146,101 @@ class Group {
 }
 
 function createCalendar(groupName) {
-    let game1, game2, game3, game4, game5,game6 = "";
+    let game1, game2, game3, game4, game5,game6, game7, game8,game9,game10 = "";
+    let games = []
 
         switch(groupName) {
-            case "A":   game1 = new Calendar ("Turquía", "Italia", "11 de junio de 2021 21:00", "Estadio Olímpico, Roma",0,0);
+            case "A_EURO":   game1 = new Calendar ("Turquía", "Italia", "11 de junio de 2021 21:00", "Estadio Olímpico, Roma",0,0);
                         game2 = new Calendar ("Gales","Suiza", "12 de junio de 2021 15:00", "Estadio Olímpico, Bakú",0,0);
                         game3 = new Calendar ("Turquía","Gales", "16 de junio de 2021 18:00", "Estadio Olímpico, Bakú",0,0);
                         game4 = new Calendar ("Italia", "Suiza", "16 de junio de 2021 21:00", "Estadio Olímpico, Roma",0,0);
                         game5 = new Calendar ("Suiza","Turquía", "20 de junio de 2021 18:00", "Estadio Olímpico, Bakú",0,0);
                         game6 = new Calendar ("Italia", "Gales", "20 de junio de 2021 18:00", "Estadio Olímpico, Roma",0,0);
+                        games = [game1,game2,game3,game4,game5,game6]
 
                         break;
 
-            case "B":   game1 = new Calendar ("Dinamarca", "Finlandia", "12 de junio de 2021 18:00", "Parken Stadion, Copenhague",0,0);
+            case "B_EURO":   game1 = new Calendar ("Dinamarca", "Finlandia", "12 de junio de 2021 18:00", "Parken Stadion, Copenhague",0,0);
                         game2 = new Calendar ("Bélgica","Rusia", "12 de junio de 2021 21:00", "Estadio Krestovski, San Petersburgo",0,0);
                         game3 = new Calendar ("Finlandia","Rusia", "16 de junio de 2021 15:00", "Estadio Krestovski, San Petersburgo",0,0);
                         game4 = new Calendar ("Dinamarca", "Bélgica", "17 de junio de 2021 18:00", "Parken Stadion, Copenhague",0,0);
                         game5 = new Calendar ("Rusia", "Dinamarca", "21 de junio de 2021 21:00", "Parken Stadion, Copenhague",0,0);
                         game6 = new Calendar ("Finlandia","Bélgica", "21 de junio de 2021 21:00", "Estadio Krestovski, San Petersburgo",0,0);
+                        games = [game1,game2,game3,game4,game5,game6]
             
                         break;
                         
-            case "C":   game1 = new Calendar ("Austria", "Macedonia del Norte", "13 de junio de 2021 18:00", "Arena Națională, Bucarest",0,0);
+            case "C_EURO":   game1 = new Calendar ("Austria", "Macedonia del Norte", "13 de junio de 2021 18:00", "Arena Națională, Bucarest",0,0);
                         game2 = new Calendar ("Países Bajos","Ucrania", "13 de junio de 2021 21:00", "Johan Cruyff Arena, Ámsterdam",0,0);
                         game3 = new Calendar ("Ucrania","Macedonia del Norte", "17 de junio de 2021 15:00", "Arena Națională, Bucarest",0,0);
                         game4 = new Calendar ("Países Bajos", "Austria", "17 de junio de 2021 21:00", "Johan Cruyff Arena, Ámsterdam",0,0);
                         game5 = new Calendar ("Macedonia del Norte","Países Bajos", "21 de junio de 2021 18:00", "Johan Cruyff Arena, Ámsterdam",0,0);
                         game6 = new Calendar ("Ucrania", "Austria", "21 de junio de 2021 18:00", "Arena Națională, Bucarest",0,0);
+                        games = [game1,game2,game3,game4,game5,game6]
 
                         break;
 
-            case "D":   game1 = new Calendar ("Inglaterra", "Croacia", "13 de junio de 2021 15:00", "Estadio de Wembley, Londres",0,0);
+            case "D_EURO":   game1 = new Calendar ("Inglaterra", "Croacia", "13 de junio de 2021 15:00", "Estadio de Wembley, Londres",0,0);
                         game2 = new Calendar ("Escocia","República Checa", "14 de junio de 2021 15:00", "Hampden Park, Glasgow",0,0);
                         game3 = new Calendar ("Croacia","República Checa", "18 de junio de 2021 18:00", "Hampden Park, Glasgow",0,0);
                         game4 = new Calendar ("Inglaterra", "Escocia", "18 de junio de 2021 21:00", "Estadio de Wembley, Londres",0,0);
                         game5 = new Calendar ("Croacia","Escocia", "22 de junio de 2021 21:00", "Hampden Park, Glasgow",0,0);
                         game6 = new Calendar ("República Checa", "Inglaterra", "22 de junio de 2021 21:00", "Estadio de Wembley, Londres",0,0);
+                        games = [game1,game2,game3,game4,game5,game6]
 
                         break;
 
-            case "E":   game1 = new Calendar ("Polonia", "Eslovaquia", "14 de junio de 2021 18:00", "Estadio Krestovski, San Petersburgo",0,0);
+            case "E_EURO":   game1 = new Calendar ("Polonia", "Eslovaquia", "14 de junio de 2021 18:00", "Estadio Krestovski, San Petersburgo",0,0);
                         game2 = new Calendar ("España","Suecia", "14 de junio de 2021 21:00", "Estadio La Cartuja, Sevilla",0,0);
                         game3 = new Calendar ("Suecia","Eslovaquia", "18 de junio de 2021 15:00", "Estadio Krestovski, San Petersburgo",0,0);
                         game4 = new Calendar ("España", "Polonia", "19 de junio de 2021 21:00", "Estadio La Cartuja, Sevilla",0,0);
                         game5 = new Calendar ("Eslovaquia","España", "23 de junio de 2021 18:00", "Estadio La Cartuja, Sevilla",0,0);
                         game6 = new Calendar ("Suecia", "Polonia", "23 de junio de 2021 18:00", "Estadio Krestovski, San Petersburgo",0,0);
+                        games = [game1,game2,game3,game4,game5,game6]
 
                         break;
 
-            case "F":   game1 = new Calendar ("Hungría", "Portugal", "15 de junio de 2021 18:00", "Puskás Aréna, Budapest",0,0);
-                        game2 = new Calendar ("Francia","Alemania", "15 de junio de 2021 21:00", "Allianz Arena, Múnich",0,0);
-                        game3 = new Calendar ("Hungría","Francia", "19 de junio de 2021 15:00", "Puskás Aréna, Budapest",0,0);
-                        game4 = new Calendar ("Portugal", "Alemania", "19 de junio de 2021 18:00", "Allianz Arena, Múnich",0,0);
-                        game5 = new Calendar ("Portugal","Francia", "23 de junio de 2021 21:00", "Puskás Aréna, Budapest",0,0);
-                        game6 = new Calendar ("Alemania", "Hungría", "23 de junio de 2021 21:00", "Allianz Arena, Múnich",0,0);
+            case "F_EURO":   game1 = new Calendar ("Hungría", "Portugal", "15 de junio de 2021 18:00", "Puskás Aréna, Budapest",0,0);
+                            game2 = new Calendar ("Francia","Alemania", "15 de junio de 2021 21:00", "Allianz Arena, Múnich",0,0);
+                            game3 = new Calendar ("Hungría","Francia", "19 de junio de 2021 15:00", "Puskás Aréna, Budapest",0,0);
+                            game4 = new Calendar ("Portugal", "Alemania", "19 de junio de 2021 18:00", "Allianz Arena, Múnich",0,0);
+                            game5 = new Calendar ("Portugal","Francia", "23 de junio de 2021 21:00", "Puskás Aréna, Budapest",0,0);
+                            game6 = new Calendar ("Alemania", "Hungría", "23 de junio de 2021 21:00", "Allianz Arena, Múnich",0,0);
+                            games = [game1,game2,game3,game4,game5,game6]
 
-                        break;
+                            break;
+            case "A_AMERICA":   game1 = new Calendar ("Argentina", "Chile", "14 de junio de 2021 18:00", "Estadio Nilton Santos, Río de Janeiro",0,0);
+                                game2 = new Calendar ("Paraguay","Bolivia", "14 de junio de 2021 21:00", "Estadio Olímpico, Goiânia",0,0);
+                                game3 = new Calendar ("Chile","Bolivia", "18 de junio de 2021 17:00", "Arena Pantanal, Cuiabá",0,0);
+                                game4 = new Calendar ("Argentina", "Uruguay", "18 de junio de 2021 21:00", "Estadio Mané Garrincha, Brasilia",0,0);
+                                game5 = new Calendar ("Uruguay","Chile", "21 de junio de 2021 17:00", "Arena Pantanal, Cuiabá",0,0);
+                                game6 = new Calendar ("Argentina", "Paraguay", "21 de junio de 2021 21:00", "Estadio Mané Garrincha, Brasilia",0,0);
+                                game7 = new Calendar ("Bolivia", "Uruguay", "24 de junio de 2021 17:00", "Arena Pantanal, Cuiabá",0,0);
+                                game8 = new Calendar ("Chile", "Paraguay", "24 de junio de 2021 21:00", "Estadio Mané Garrincha, Brasilia",0,0);
+                                game9 = new Calendar ("Bolivia", "Argentina", "28 de junio de 2021 20:00", "Arena Pantanal, Cuiabá",0,0);
+                                game10 = new Calendar ("Uruguay", "Paraguay", "28 de junio de 2021 21:00", "Estadio Nilton Santos, Río de Janeiro",0,0);
+                                games = [game1,game2,game3,game4,game5,game6,game7,game8,game9,game10]
+
+                                break;
+
+            case "B_AMERICA":   game1 = new Calendar ("Brasil", "Venezuela", "13 de junio de 2021 18:00", "Estadio Mané Garrincha, Brasilia",0,0);
+                                game2 = new Calendar ("Colombia","Ecuador", "13 de junio de 2021 20:00", "Arena Pantanal, Cuiabá",0,0);
+                                game3 = new Calendar ("Colombia","Venezuela", "17 de junio de 2021 18:00", "Estadio Olímpico, Goiânia",0,0);
+                                game4 = new Calendar ("Brasil", "Perú", "17 de junio de 2021 21:00", "Estadio Nilton Santos, Río de Janeiro",0,0);
+                                game5 = new Calendar ("Venezuela","Ecuador", "21 de junio de 2021 17:00", "Estadio Nilton Santos, Río de Janeiro",0,0);
+                                game6 = new Calendar ("Colombia", "Perú", "21 de junio de 2021 21:00", "Estadio Olímpico, Goiânia",0,0);
+                                game7 = new Calendar ("Ecuador", "Perú", "24 de junio de 2021 17:00", "Estadio Olímpico, Goiânia",0,0);
+                                game8 = new Calendar ("Brasil", "Colombia", "24 de junio de 2021 21:00", "Estadio Nilton Santos, Río de Janeiro",0,0);
+                                game9 = new Calendar ("Brasil", "Ecuador", "28 de junio de 2021 20:00", "Estadio Olímpico, Goiânia",0,0);
+                                game10 = new Calendar ("Venezuela", "Perú", "28 de junio de 2021 21:00", "Estadio Mané Garrincha, Brasilia",0,0);
+                                games = [game1,game2,game3,game4,game5,game6,game7,game8,game9,game10]
+
+                                break;
             
         }
 
         
-        return [game1,game2,game3,game4,game5,game6]
+        return games;
     
 }
 
@@ -219,20 +256,38 @@ function createTeams(teams) {
 }
 
 function createEuroGroups()  {
-    const GROUP_A = new Group("A",createTeams(["Turquía","Italia","Gales","Suiza"]),createCalendar("A"));
-    const GROUP_B = new Group("B",createTeams(["Bélgica","Dinamarca","Finlandia","Rusia"]),createCalendar("B"));
-    const GROUP_C = new Group("C",createTeams(["Países Bajos","Austria","Ucrania","Macedonia del Norte"]),createCalendar("C"));
-    const GROUP_D = new Group("D",createTeams(["Inglaterra","Croacia","República Checa","Escocia"]),createCalendar("D"));
-    const GROUP_E = new Group("E",createTeams(["Suecia","España","Eslovaquia","Polonia"]),createCalendar("E"));
-    const GROUP_F = new Group("F",createTeams(["Francia","Alemania","Portugal","Hungría"]),createCalendar("F"));
+    const GROUP_A = new Group("A",createTeams(["Turquía","Italia","Gales","Suiza"]),createCalendar("A_EURO"));
+    const GROUP_B = new Group("B",createTeams(["Bélgica","Dinamarca","Finlandia","Rusia"]),createCalendar("B_EURO"));
+    const GROUP_C = new Group("C",createTeams(["Países Bajos","Austria","Ucrania","Macedonia del Norte"]),createCalendar("C_EURO"));
+    const GROUP_D = new Group("D",createTeams(["Inglaterra","Croacia","República Checa","Escocia"]),createCalendar("D_EURO"));
+    const GROUP_E = new Group("E",createTeams(["Suecia","España","Eslovaquia","Polonia"]),createCalendar("E_EURO"));
+    const GROUP_F = new Group("F",createTeams(["Francia","Alemania","Portugal","Hungría"]),createCalendar("F_EURO"));
 
 
     return [GROUP_A, GROUP_B, GROUP_C, GROUP_D, GROUP_E, GROUP_F]
 }
 
+function createCopaAmericaGroups()  {
+    const GROUP_A = new Group("A",createTeams(["Argentina","Uruguay","Paraguay","Chile","Bolivia"]),createCalendar("A_AMERICA"));
+    const GROUP_B = new Group("B",createTeams(["Brasil","Perú","Colombia","Ecuador", "Venezuela"]),createCalendar("B_AMERICA"));
+
+    return [GROUP_A, GROUP_B]
+}
+
 // SIMULADOR DE EUROCOPA
 function initEurocopa() {
     const sim = new Simulator("Eurocopa",createEuroGroups());
+    qty_teams_clasified = 2;
+    qty_third_teams_clasified = 4;
+    simulateGroupStage(sim.groups);
+    sim.createTableGroups();
+}
+
+// SIMULADOR DE Copa America
+function initCopaAmerica() {
+    const sim = new Simulator("Copa América",createCopaAmericaGroups());
+    qty_teams_clasified = 4;
+    qty_third_teams_clasified = 0;
     simulateGroupStage(sim.groups);
     sim.createTableGroups();
 }
@@ -245,7 +300,10 @@ function simulateGroupStage(groups) {
         simulateGroup(group);
     }
 
-    getBestThird(groups);
+    if (qty_third_teams_clasified > 0) {
+        getBestThird(groups);
+
+    }
 
 }
 
@@ -286,7 +344,7 @@ function simulateGroup(group) {
     }
 
     teams.sort((a, b) => b.points - a.points);
-    markTeamsClasified(teams.slice(0,2), false);
+    markTeamsClasified(teams.slice(0,qty_teams_clasified), false);
     
     
 }
@@ -312,7 +370,7 @@ function getBestThird(groups) {
     });
 
     // Tomar los cuatro mejores terceros
-  const bestThird = third.slice(0, 4);
+  const bestThird = third.slice(0, qty_third_teams_clasified);
   markTeamsClasified(bestThird, true);
 
 
@@ -321,7 +379,6 @@ function getBestThird(groups) {
 function markTeamsClasified (teamsClasified, isThird) {
   
     for (const team of teamsClasified) {
-        console.log("TEAM " + team + " is clasified and is Third " + isThird);
         team.clasified = true;
         team.isThird = isThird;
     }
