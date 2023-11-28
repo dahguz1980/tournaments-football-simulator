@@ -279,7 +279,7 @@ function initEurocopa() {
     const sim = new Simulator("Eurocopa",createEuroGroups());
     qty_teams_clasified = 2;
     qty_third_teams_clasified = 4;
-   // simulateGroupStage(sim.groups);
+    simulateGroupStage(sim.groups);
     sim.createTableGroups();
 }
 
