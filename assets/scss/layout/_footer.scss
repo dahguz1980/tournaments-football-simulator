@@ -1,12 +1,11 @@
 footer {
 
     height: 405px;
+    border-top:  5px solid $secondary;
 
     @include media-query  ($layout-breakpoint-xl){ 
         height: 300px;
     }
-
-    border-top:  5px solid $secondary;
 
     p {
         font-size: 12px;

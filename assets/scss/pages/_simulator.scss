@@ -1,0 +1,49 @@
+
+
+#groupsPhase {
+
+    .with-responsive{
+
+        @include media-query  ($layout-breakpoint-xxs){ 
+            width:100%;
+        }
+        
+        @include media-query  ($layout-breakpoint-m){ 
+            width:75%;
+        }
+
+        table {
+            tbody {
+                font-size: 14px;
+            }
+    
+            thead {
+                font-size: 16px;
+            }
+        }
+        
+    }
+
+    .simulate-group {
+        font-size: 14px;
+
+        input[type=text] {
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .form-control {
+            box-shadow: none;
+            font-size: 14px;
+            border-radius: 0%;
+            padding: 0;
+            border-color:$dark;
+            text-align: center;
+        }
+
+        .form-control:focus {
+            border-color:$dark;
+        }
+    }
+
+}

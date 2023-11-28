@@ -3770,13 +3770,13 @@ textarea.form-control-lg {
 }
 
 .nav-tabs {
-  --bs-nav-tabs-border-width: var(--bs-border-width);
+  --bs-nav-tabs-border-width: 1px;
   --bs-nav-tabs-border-color: var(--bs-border-color);
-  --bs-nav-tabs-border-radius: var(--bs-border-radius);
-  --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
+  --bs-nav-tabs-border-radius: 0;
+  --bs-nav-tabs-link-hover-border-color: transparent;
   --bs-nav-tabs-link-active-color: var(--bs-emphasis-color);
-  --bs-nav-tabs-link-active-bg: var(--bs-body-bg);
-  --bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg);
+  --bs-nav-tabs-link-active-bg: #ff635b;
+  --bs-nav-tabs-link-active-border-color: #ff635b;
   border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
 }
 .nav-tabs .nav-link {
@@ -11859,6 +11859,9 @@ textarea.form-control-lg {
 body {
   font-family: "Montserrat", sans-serif;
 }
+body .main-content {
+  min-height: 100vh;
+}
 body h1, body .h1 {
   font-family: "Graduate", serif;
   text-transform: uppercase;
@@ -11882,6 +11885,12 @@ body h5, body .h5 {
 body h6, body .h6 {
   font-family: "Graduate", serif;
   text-transform: uppercase;
+}
+body .text-right {
+  text-align: right;
+}
+body .text-left {
+  text-align: left;
 }
 
 .home-container {
@@ -12006,6 +12015,11 @@ main .home-container .article2 {
     font-size: 14px;
   }
 }
+@media (min-width: 370px) {
+  main .home-container .article2 .btn {
+    font-size: 16px;
+  }
+}
 main .home-container .article3 {
   grid-area: article3;
   border-top: 5px solid #ff635b;
@@ -12015,6 +12029,47 @@ main .home-container .article3 {
     width: 250px;
     height: 250px;
   }
+}
+@media (min-width: 370px) {
+  main .home-container .article3 img {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+@media (min-width: 0) {
+  #groupsPhase .with-responsive {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  #groupsPhase .with-responsive {
+    width: 75%;
+  }
+}
+#groupsPhase .with-responsive table tbody {
+  font-size: 14px;
+}
+#groupsPhase .with-responsive table thead {
+  font-size: 16px;
+}
+#groupsPhase .simulate-group {
+  font-size: 14px;
+}
+#groupsPhase .simulate-group input[type=text] {
+  width: 30px;
+  border-radius: 5px;
+}
+#groupsPhase .simulate-group .form-control {
+  box-shadow: none;
+  font-size: 14px;
+  border-radius: 0%;
+  padding: 0;
+  border-color: #2a2a2a;
+  text-align: center;
+}
+#groupsPhase .simulate-group .form-control:focus {
+  border-color: #2a2a2a;
 }
 
 /*# sourceMappingURL=styles.css.map */

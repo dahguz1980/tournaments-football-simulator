@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Torneos de Fútbol</title>
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <title>Simulador de Torneos de Futbol</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
             <nav class="navbar navbar-expand-lg bg-primary">
                 <div class="container-fluid m-0 p-1">
                     <a class="navbar-brand d-flex align-items-center justify-content-evenly with-logo" href="#">
-                        <img src="./assets/img/logo.png" alt="Simulador de Torneos" width="40" height="40"
+                        <img src="../assets/img/logo.png" alt="Simulador de Torneos" width="40" height="40"
                             class="d-inline-block align-text-top">
                         <span class="text-xxs">Simulador de Torneos</span>
                     </a>
@@ -34,7 +34,7 @@
                                     Simuladores
                                 </a>
                                 <ul class="dropdown-menu text-xxs text-center" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="./pages/simulatorEuro.html">Eurocopa</a></li>
+                                    <li><a class="dropdown-item" href="#">Eurocopa</a></li>
                                     <li><a class="dropdown-item" href="#">Copa América</a></li>
                                 </ul>
                             </li>
@@ -42,50 +42,35 @@
                     </div>
                 </div>
             </nav>
+            <div>
+                <ul class="nav nav-tabs justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#groupsPhase">Fase de Grupos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Octavos de Final</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cuartos de Final</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Semifinales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Final</a>
+                    </li>
+                </ul>
+            </div>
         </header>
 
-        <main class="d-flex justify-content-center mt-3 mb-3">
-            <section class="home-container">
-                <article class="article1">
-                    <div class="home-phrase d-flex flex-column justify-content-end h-100">
-                        <div class="phrase1">Solo</div>
-                        <div class="phrase2">el mejor</div>
-                        <div class="phrase3">vencerá</div>
-                    </div>
-                </article>
-                <article class="article2 bg-primary d-flex flex-column  align-items-center justify-content-evenly">
-                    <h1 class="text-light mt-3">Bienvenidos</h1>
-                    <img src="./assets/img/welcome-simulator.png" width="250px" height="101">
-                    <p class="text-light p-4 text-center">
-                        ¡Bienvenidos a nuestro sitio web. Aquí, te
-                        invitamos a sumergirte en el emocionante mundo del deporte rey, donde podrás hacer tus propios
-                         pronósticos y simulaciones que te mantendrán
-                        al tanto de lo que podría suceder en el terreno de juego! No importa si eres un fanático
-                        apasionado o simplemente un curioso del fútbol, ¡nuestro sitio te brindará una experiencia
-                        emocionante! ¡Comienza a explorar y a disfrutar de la emoción del fútbol en cada clic!</p>
+        <!-- Tabs content -->
+        <div id="groupsPhase" class="d-flex flex-column align-items-center">
+        </div>
 
-                    <button class="btn btn-secondary w-50">Eurocopa </button>
-                    <button class="btn btn-secondary w-50">Copa América</button>
-
-                </article>
-                <article class="article3  d-flex align-items-center justify-content-center flex-wrap flex-lg-nowrap flex-xl-nowrap">
-                    <img width="350" height="350" src="./assets/img/tournament-simulator.png" alt="Simulador de Torneos">
-                    <div class="d-flex justify-content-center ">
-                        <p class="text-center p-3">Ésta aplicación de simulación de resultados de torneos de fútbol te
-                            permite seguir de cerca los
-                            torneos más importantes del mundo y predecir los resultados de los partidos. No necesitas
-                            ser un
-                            director técnico o tomar decisiones estratégicas, solo disfrutar de la emoción de ver cómo
-                            se
-                            desarrollan los torneos y simular los marcadores de los partidos para competiciones como la
-                            Copa del
-                            Mundo, la Eurocopa y Copa América. ¡Sé un observador apasionado y demuestra tu
-                            habilidad para prever los resultados en estos torneos icónicos!</p>
-                    </div>
-                </article>
-            </section>
-        </main>
-
+        <div class="d-flex justify-content-center p-2">
+            <button class="btn btn-secondary">Simular</button>
+        </div>
+        
         <footer class="bg-dark">
             <div class="d-flex flex-column justify-content-center h-100">
                 <div class="row text-light text-center">
@@ -152,6 +137,11 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/824bc11b23.js" crossorigin="anonymous"></script>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        initEurocopa();
+    </script>
 </body>
 
 </html>

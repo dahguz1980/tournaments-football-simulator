@@ -1,4 +1,3 @@
-
 // MENU DE OPCINOES E INICIO DEL SIMULADOR
 function menu() {
     let option = 0;
