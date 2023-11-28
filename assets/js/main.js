@@ -77,14 +77,14 @@ class Simulator  {
 
             // append games
             element.calendar.forEach (game  => {
-                const divGame =    `<div class="simulate-group border-top w-75 row p-2 text-center">
-                                        <div class="col-3">${game.gameDate}</div>
-                                        <div class="col-6 row">
-                                            <div class="col-5 text-right"><img src="${game.localFlag}" width="16px" height="16px">&nbsp;${game.local}</div>
-                                            <div class="d-flex justify-content-between col-2"><input type="text" class="form-control" value="${game.goalsLocal}"> - <input type="text" class="form-control" value="${game.goalsVisitor}"></div>
-                                            <div class="col-5 text-left"><img src="${game.visitorFlag}" width="16px" height="16px">&nbsp;${game.visitor}</div>
+                const divGame =    `<div class="simulate-group border-top with-responsive row p-2 text-center">
+                                        <div class="col-12 col-xl-3 p-2 p-xl-0">${game.gameDate}</div>
+                                        <div class="col-12 col-xl-6 row">
+                                            <div class="col-4 text-right"><img src="${game.localFlag}" class="d-none d-sm-inline" width="16px" height="16px">&nbsp;${game.local}</div>
+                                            <div class="d-flex justify-content-between col-4"><input type="text" class="form-control" value="${game.goalsLocal}"> - <input type="text" class="form-control" value="${game.goalsVisitor}"></div>
+                                            <div class="col-4 text-left"><img class="d-none d-sm-inline" src="${game.visitorFlag}" width="16px" height="16px">&nbsp;${game.visitor}</div>
                                         </div>
-                                        <div class="col-3">${game.gamePlace}</div>
+                                        <div class="col-12 col-xl-3 p-2 p-xl-0">${game.gamePlace}</div>
                                     </div>`
 
                 groupsContainer.innerHTML += divGame;
@@ -279,7 +279,7 @@ function initEurocopa() {
     const sim = new Simulator("Eurocopa",createEuroGroups());
     qty_teams_clasified = 2;
     qty_third_teams_clasified = 4;
-    simulateGroupStage(sim.groups);
+   // simulateGroupStage(sim.groups);
     sim.createTableGroups();
 }
 

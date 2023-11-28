@@ -12067,6 +12067,7 @@ main .home-container .article3 {
   padding: 0;
   border-color: #2a2a2a;
   text-align: center;
+  height: 23px;
 }
 #groupsPhase .simulate-group .form-control:focus {
   border-color: #2a2a2a;
