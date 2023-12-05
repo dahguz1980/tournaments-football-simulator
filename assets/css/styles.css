@@ -3354,7 +3354,7 @@ textarea.form-control-lg {
   --bs-dropdown-link-color: #fcf9f9;
   --bs-dropdown-link-hover-color: #fcf9f9;
   --bs-dropdown-link-hover-bg: #100551;
-  --bs-dropdown-link-active-color: #fff;
+  --bs-dropdown-link-active-color: #ff635b;
   --bs-dropdown-link-active-bg: #100551;
   --bs-dropdown-link-disabled-color: var(--bs-tertiary-color);
   --bs-dropdown-item-padding-x: 1rem;
@@ -3620,7 +3620,7 @@ textarea.form-control-lg {
   --bs-dropdown-link-hover-color: #fff;
   --bs-dropdown-divider-bg: var(--bs-border-color-translucent);
   --bs-dropdown-link-hover-bg: rgba(255, 255, 255, 0.15);
-  --bs-dropdown-link-active-color: #fff;
+  --bs-dropdown-link-active-color: #ff635b;
   --bs-dropdown-link-active-bg: #100551;
   --bs-dropdown-link-disabled-color: #adb5bd;
   --bs-dropdown-header-color: #adb5bd;
@@ -11961,7 +11961,7 @@ header nav .navbar-toggler:focus {
   box-shadow: none;
 }
 header nav .navbar-nav .nav-link.show {
-  color: #fcf9f9;
+  color: #ff635b;
 }
 header nav .with-logo {
   min-width: 200px;

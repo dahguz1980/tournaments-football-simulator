@@ -11,9 +11,10 @@ $dark:          #2a2a2a;
 $navbar-light-brand-color: $light;
 $navbar-light-brand-hover-color: $light;
 $navbar-light-link-color: $light;
-$navbar-light-active-color: #ff635b;
+$navbar-light-active-color: $secondary;
 $navbar-light-hover-color: $light;
 $navbar-light-color: $light;
+$dropdown-link-active-color: $secondary;
 
 // breakpoints
 $layout-breakpoint-xxs: 0;

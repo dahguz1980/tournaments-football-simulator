@@ -30,13 +30,13 @@ class Simulator  {
                 const divGame =    `<div class="simulate-group border-top with-responsive row p-2 text-center">
                                         <div class="col-12 col-xl-3 p-2 p-xl-0">${game.gameDate}</div>
                                         <div class="col-12 col-xl-6 row">
-                                            <div class="col-4 text-right"><img src="${game.localFlag}" class="d-none d-sm-inline" width="16px" height="16px">&nbsp;${game.local}</div>
+                                            <div class="col-4 text-right"><img src="${game.localFlag}" class="d-none d-sm-inline" width="16px" height="16px">&nbsp;${game.local.slice(0,3)}</div>
                                             <form class="d-flex justify-content-between col-4">
-                                                <input id="${element.name+'_'+game.local}" type="text" class="form-control" value="${game.goalsLocal}" onChange="updateResults(form)"> 
+                                                <input id="${element.name+'_'+game.local.slice(0,3)}" type="text" class="form-control" value="${game.goalsLocal}" onChange="updateResults(form)"> 
                                                 - 
-                                                <input id="${element.name+'_'+game.visitor}" type="text" class="form-control" value="${game.goalsVisitor}" onChange="updateResults(form)">
+                                                <input id="${element.name+'_'+game.visitor.slice(0,3)}" type="text" class="form-control" value="${game.goalsVisitor}" onChange="updateResults(form)">
                                             </form>
-                                            <div class="col-4 text-left"><img class="d-none d-sm-inline" src="${game.visitorFlag}" width="16px" height="16px">&nbsp;${game.visitor}</div>
+                                            <div class="col-4 text-left"><img class="d-none d-sm-inline" src="${game.visitorFlag}" width="16px" height="16px">&nbsp;${game.visitor.slice(0,3)}</div>
                                         </div>
                                         <div class="col-12 col-xl-3 p-2 p-xl-0">${game.gamePlace}</div>
                                     </div>`
@@ -110,18 +110,18 @@ class Simulator  {
 }
 
 class Calendar {
-    constructor (local, visitor, gameDate, gamePlace) {
-        this.local = local.slice(0,3);
+    constructor (local, visitor, gameDate, gamePlace, goalsLocal, goalsVisitor, winner, losser,draw) {
+        this.local = local;
         this.localFlag = `../assets/img/${removeAccents(local).replace(/\s+/g, "")}.webp`
-        this.visitor = visitor.slice(0,3);
+        this.visitor = visitor;
         this.visitorFlag = `../assets/img/${removeAccents(visitor).replace(/\s+/g, "")}.webp`
         this.gameDate = gameDate;
         this.gamePlace = gamePlace;
-        this.goalsLocal = "";
-        this.goalsVisitor = "";
-        this.winner=""
-        this.losser=""
-        this.draw=""
+        this.goalsLocal = goalsLocal;
+        this.goalsVisitor = goalsVisitor;
+        this.winner= winner;
+        this.losser=losser;
+        this.draw=draw;
     }
 
     updateGoals (goalsLocal, goalsVisitor) {
@@ -143,6 +143,8 @@ class Calendar {
                 this.winner = "";
             }
         } else {
+            this.goalsLocal = "";
+            this.goalsVisitor = "";
             this.draw = ""
             this.losser = "";
             this.winner = "";
@@ -151,7 +153,7 @@ class Calendar {
 }
 
 class Team {
-    constructor(name,  gamesPlayed, wins, draws, losses, goalsFor, goalsAgainst, points) {
+    constructor(name,  gamesPlayed, wins, draws, losses, goalsFor, goalsAgainst, points, clasified, isThird) {
         this.name = name;
         this.flag =`../assets/img/${removeAccents(name).toLowerCase().replace(/\s+/g, "")}.webp`;
         this.gamesPlayed = gamesPlayed;
@@ -162,8 +164,8 @@ class Team {
         this.goalsAgainst = goalsAgainst;
         this.points = points;
         this.goalsDifference = goalsFor - goalsAgainst;
-        this.clasified = false;
-        this.isThird = false;
+        this.clasified = clasified;
+        this.isThird = isThird;
 
 
     }
@@ -180,11 +182,11 @@ class Team {
 
         for (const game of games) {
 
-            if ((game.local == this.name.slice(0,3) || game.visitor == this.name.slice(0,3)) && (game.winner!="" || game.losser!="" || game.draw==1)) {
+            if ((game.local == this.name || game.visitor == this.name) && (game.winner!="" || game.losser!="" || game.draw==1)) {
         
                 gamesPlayed+=1;
 
-                if (game.winner === this.name.slice(0,3)) {
+                if (game.winner === this.name) {
                     wins++;
                     points+=3;
                     
@@ -197,10 +199,10 @@ class Team {
 
                 // Sumar goles dependiendo si el equipo es local o visitante
 
-                if (game.local===this.name.slice(0,3)) {
+                if (game.local===this.name) {
                     goalsFor += game.goalsLocal;
                     goalsAgainst += game.goalsVisitor;
-                } else if (game.visitor===this.name.slice(0,3)) {
+                } else if (game.visitor===this.name) {
                     goalsFor += game.goalsVisitor;
                     goalsAgainst += game.goalsLocal;
                 }
@@ -227,126 +229,52 @@ class Group {
     }
 }
 
-function createCalendar(groupName) {
-    let game1, game2, game3, game4, game5,game6, game7, game8,game9,game10 = "";
+function createCalendar(calendar) {
     let games = []
 
-        switch(groupName) {
-            case "A_EURO":   game1 = new Calendar ("Turquía", "Italia", "11 de junio de 2021 21:00", "Estadio Olímpico, Roma");
-                        game2 = new Calendar ("Gales","Suiza", "12 de junio de 2021 15:00", "Estadio Olímpico, Bakú");
-                        game3 = new Calendar ("Turquía","Gales", "16 de junio de 2021 18:00", "Estadio Olímpico, Bakú");
-                        game4 = new Calendar ("Italia", "Suiza", "16 de junio de 2021 21:00", "Estadio Olímpico, Roma");
-                        game5 = new Calendar ("Suiza","Turquía", "20 de junio de 2021 18:00", "Estadio Olímpico, Bakú");
-                        game6 = new Calendar ("Italia", "Gales", "20 de junio de 2021 18:00", "Estadio Olímpico, Roma");
-                        games = [game1,game2,game3,game4,game5,game6]
-
-                        break;
-
-            case "B_EURO":   game1 = new Calendar ("Dinamarca", "Finlandia", "12 de junio de 2021 18:00", "Parken Stadion, Copenhague");
-                        game2 = new Calendar ("Bélgica","Rusia", "12 de junio de 2021 21:00", "Estadio Krestovski, San Petersburgo");
-                        game3 = new Calendar ("Finlandia","Rusia", "16 de junio de 2021 15:00", "Estadio Krestovski, San Petersburgo");
-                        game4 = new Calendar ("Dinamarca", "Bélgica", "17 de junio de 2021 18:00", "Parken Stadion, Copenhague");
-                        game5 = new Calendar ("Rusia", "Dinamarca", "21 de junio de 2021 21:00", "Parken Stadion, Copenhague");
-                        game6 = new Calendar ("Finlandia","Bélgica", "21 de junio de 2021 21:00", "Estadio Krestovski, San Petersburgo");
-                        games = [game1,game2,game3,game4,game5,game6]
-            
-                        break;
-                        
-            case "C_EURO":   game1 = new Calendar ("Austria", "Macedonia del Norte", "13 de junio de 2021 18:00", "Arena Națională, Bucarest");
-                        game2 = new Calendar ("Países Bajos","Ucrania", "13 de junio de 2021 21:00", "Johan Cruyff Arena, Ámsterdam");
-                        game3 = new Calendar ("Ucrania","Macedonia del Norte", "17 de junio de 2021 15:00", "Arena Națională, Bucarest");
-                        game4 = new Calendar ("Países Bajos", "Austria", "17 de junio de 2021 21:00", "Johan Cruyff Arena, Ámsterdam");
-                        game5 = new Calendar ("Macedonia del Norte","Países Bajos", "21 de junio de 2021 18:00", "Johan Cruyff Arena, Ámsterdam");
-                        game6 = new Calendar ("Ucrania", "Austria", "21 de junio de 2021 18:00", "Arena Națională, Bucarest");
-                        games = [game1,game2,game3,game4,game5,game6]
-
-                        break;
-
-            case "D_EURO":   game1 = new Calendar ("Inglaterra", "Croacia", "13 de junio de 2021 15:00", "Estadio de Wembley, Londres");
-                        game2 = new Calendar ("Escocia","República Checa", "14 de junio de 2021 15:00", "Hampden Park, Glasgow");
-                        game3 = new Calendar ("Croacia","República Checa", "18 de junio de 2021 18:00", "Hampden Park, Glasgow");
-                        game4 = new Calendar ("Inglaterra", "Escocia", "18 de junio de 2021 21:00", "Estadio de Wembley, Londres");
-                        game5 = new Calendar ("Croacia","Escocia", "22 de junio de 2021 21:00", "Hampden Park, Glasgow");
-                        game6 = new Calendar ("República Checa", "Inglaterra", "22 de junio de 2021 21:00", "Estadio de Wembley, Londres");
-                        games = [game1,game2,game3,game4,game5,game6]
-
-                        break;
-
-            case "E_EURO":   game1 = new Calendar ("Polonia", "Eslovaquia", "14 de junio de 2021 18:00", "Estadio Krestovski, San Petersburgo");
-                        game2 = new Calendar ("España","Suecia", "14 de junio de 2021 21:00", "Estadio La Cartuja, Sevilla");
-                        game3 = new Calendar ("Suecia","Eslovaquia", "18 de junio de 2021 15:00", "Estadio Krestovski, San Petersburgo");
-                        game4 = new Calendar ("España", "Polonia", "19 de junio de 2021 21:00", "Estadio La Cartuja, Sevilla");
-                        game5 = new Calendar ("Eslovaquia","España", "23 de junio de 2021 18:00", "Estadio La Cartuja, Sevilla");
-                        game6 = new Calendar ("Suecia", "Polonia", "23 de junio de 2021 18:00", "Estadio Krestovski, San Petersburgo");
-                        games = [game1,game2,game3,game4,game5,game6]
-
-                        break;
-
-            case "F_EURO":   game1 = new Calendar ("Hungría", "Portugal", "15 de junio de 2021 18:00", "Puskás Aréna, Budapest");
-                            game2 = new Calendar ("Francia","Alemania", "15 de junio de 2021 21:00", "Allianz Arena, Múnich");
-                            game3 = new Calendar ("Hungría","Francia", "19 de junio de 2021 15:00", "Puskás Aréna, Budapest");
-                            game4 = new Calendar ("Portugal", "Alemania", "19 de junio de 2021 18:00", "Allianz Arena, Múnich");
-                            game5 = new Calendar ("Portugal","Francia", "23 de junio de 2021 21:00", "Puskás Aréna, Budapest");
-                            game6 = new Calendar ("Alemania", "Hungría", "23 de junio de 2021 21:00", "Allianz Arena, Múnich");
-                            games = [game1,game2,game3,game4,game5,game6]
-
-                            break;
-            case "A_AMERICA":   game1 = new Calendar ("Argentina", "Chile", "14 de junio de 2021 18:00", "Estadio Nilton Santos, Río de Janeiro");
-                                game2 = new Calendar ("Paraguay","Bolivia", "14 de junio de 2021 21:00", "Estadio Olímpico, Goiânia");
-                                game3 = new Calendar ("Chile","Bolivia", "18 de junio de 2021 17:00", "Arena Pantanal, Cuiabá");
-                                game4 = new Calendar ("Argentina", "Uruguay", "18 de junio de 2021 21:00", "Estadio Mané Garrincha, Brasilia");
-                                game5 = new Calendar ("Uruguay","Chile", "21 de junio de 2021 17:00", "Arena Pantanal, Cuiabá");
-                                game6 = new Calendar ("Argentina", "Paraguay", "21 de junio de 2021 21:00", "Estadio Mané Garrincha, Brasilia");
-                                game7 = new Calendar ("Bolivia", "Uruguay", "24 de junio de 2021 17:00", "Arena Pantanal, Cuiabá");
-                                game8 = new Calendar ("Chile", "Paraguay", "24 de junio de 2021 21:00", "Estadio Mané Garrincha, Brasilia");
-                                game9 = new Calendar ("Bolivia", "Argentina", "28 de junio de 2021 20:00", "Arena Pantanal, Cuiabá");
-                                game10 = new Calendar ("Uruguay", "Paraguay", "28 de junio de 2021 21:00", "Estadio Nilton Santos, Río de Janeiro");
-                                games = [game1,game2,game3,game4,game5,game6,game7,game8,game9,game10]
-
-                                break;
-
-            case "B_AMERICA":   game1 = new Calendar ("Brasil", "Venezuela", "13 de junio de 2021 18:00", "Estadio Mané Garrincha, Brasilia");
-                                game2 = new Calendar ("Colombia","Ecuador", "13 de junio de 2021 20:00", "Arena Pantanal, Cuiabá");
-                                game3 = new Calendar ("Colombia","Venezuela", "17 de junio de 2021 18:00", "Estadio Olímpico, Goiânia");
-                                game4 = new Calendar ("Brasil", "Perú", "17 de junio de 2021 21:00", "Estadio Nilton Santos, Río de Janeiro");
-                                game5 = new Calendar ("Venezuela","Ecuador", "21 de junio de 2021 17:00", "Estadio Nilton Santos, Río de Janeiro");
-                                game6 = new Calendar ("Colombia", "Perú", "21 de junio de 2021 21:00", "Estadio Olímpico, Goiânia");
-                                game7 = new Calendar ("Ecuador", "Perú", "24 de junio de 2021 17:00", "Estadio Olímpico, Goiânia");
-                                game8 = new Calendar ("Brasil", "Colombia", "24 de junio de 2021 21:00", "Estadio Nilton Santos, Río de Janeiro");
-                                game9 = new Calendar ("Brasil", "Ecuador", "28 de junio de 2021 20:00", "Estadio Olímpico, Goiânia");
-                                game10 = new Calendar ("Venezuela", "Perú", "28 de junio de 2021 21:00", "Estadio Mané Garrincha, Brasilia");
-                                games = [game1,game2,game3,game4,game5,game6,game7,game8,game9,game10]
-
-                                break;
-            
-        }
-
-        
-        return games;
+    calendar.forEach(c => {
+        let game = new Calendar(c.local, c.visitor, c.gameDate, c.gamePlace, c.goalsLocal, c.goalsVisitor, c.winner, c.losser, c.draw);
+        games.push(game);
+    })
     
+    return games;
+
 }
 
+/**
+ *  Crea los equipos a partir de un JSON de equipos
+ * @param  teams  (JSON)
+ * @returns 
+ */
 function createTeams(teams) {
     let teamList = []
     if (teams.length>0) {
         for (const team of teams) {
-            teamList.push(new Team(team, 0,0,0,0,0,0,0));
+            teamList.push(new Team(team.name, team.gamesPlayed, team.wins, team.draws, team.losses, team.goalsFor, team.goalsAgainst, team.points,team.clasified, team.isThird));
         }
     }
 
     return teamList;
 }
 
-function createEuroGroups()  {
-    const GROUP_A = new Group("A",createTeams(["Turquía","Italia","Gales","Suiza"]),createCalendar("A_EURO"));
-    const GROUP_B = new Group("B",createTeams(["Bélgica","Dinamarca","Finlandia","Rusia"]),createCalendar("B_EURO"));
-    const GROUP_C = new Group("C",createTeams(["Países Bajos","Austria","Ucrania","Macedonia del Norte"]),createCalendar("C_EURO"));
-    const GROUP_D = new Group("D",createTeams(["Inglaterra","Croacia","República Checa","Escocia"]),createCalendar("D_EURO"));
-    const GROUP_E = new Group("E",createTeams(["Suecia","España","Eslovaquia","Polonia"]),createCalendar("E_EURO"));
-    const GROUP_F = new Group("F",createTeams(["Francia","Alemania","Portugal","Hungría"]),createCalendar("F_EURO"));
+/**
+ *  Crea los grupos con los equipos y calendarios de juegos a partir de un JSON
+ * @param  groupsInfo  (JSON)
+ * @returns 
+ */
+function createEuroGroups(groupsInfo)  {
 
+    let groups = []
 
-    return [GROUP_A, GROUP_B, GROUP_C, GROUP_D, GROUP_E, GROUP_F]
+    if (groupsInfo!= undefined) {
+        groupsInfo.forEach(element => {
+            let group = new Group (element.name, createTeams(element.teams), createCalendar(element.calendar))
+            groups.push(group);
+        });
+
+    } 
+
+    return groups;
 }
 
 function createCopaAmericaGroups()  {
@@ -358,7 +286,7 @@ function createCopaAmericaGroups()  {
 
 // SIMULADOR DE EUROCOPA
 function initEurocopa() {
-    sim = new Simulator("Eurocopa",createEuroGroups());
+    sim = localStorage.getItem("sim_Eurocopa_groups")!= undefined ? new Simulator("Eurocopa", createEuroGroups(JSON.parse(localStorage.getItem("sim_Eurocopa_groups")))) :  new Simulator("Eurocopa",createEuroGroups(data_ini));
     qty_teams_clasified = 2;
     qty_third_teams_clasified = 4;
    sim.createTableGroups();
@@ -429,7 +357,7 @@ function updateResults(e) {
             // se encontraron los equipos
             if (teamLocal!=undefined && teamVisitor!= undefined) {
                 //4.- Obtener el juego
-                const game = group.calendar.find((game) => game.local === inputTeamLocalInfo[1] && game.visitor === inputTeamVisitorInfo[1]);
+                const game = group.calendar.find((game) => game.local.slice(0,3) === inputTeamLocalInfo[1] && game.visitor.slice(0,3) === inputTeamVisitorInfo[1]);
 
                 // se encontro el juego y se actualizan los goles
                 if (game!=undefined) {
@@ -445,13 +373,13 @@ function updateResults(e) {
 
                     
                 } else {
-                    alert("Ocurrió un error inesperado")
+                    alert("Error del Sistema: No se encontró el juego a relacionar")
                 }
             } else {
-                alert ("Ocurrió un error inesperado")
+                alert ("Error del Sistema: No se encontró el equipo a actualizar")
             } 
         } else {
-            alert("Ocurrio un error inesperado")
+            alert("Error del Sistema: No se entraron los grupos")
         }
 
         //Ordenar la tabla de equipos
@@ -460,6 +388,8 @@ function updateResults(e) {
        
         // se marcan las filas de los posibles ganadores
         markTeamsClasified(group.teams.slice(0,qty_teams_clasified), false);
+        // se marcan los equipos que no clasifican
+        unmarkTeamsClasified(group.teams.slice(qty_teams_clasified,group.teams.length));
 
         if (qty_third_teams_clasified > 0) {
             getBestThird(sim.groups);
@@ -471,7 +401,10 @@ function updateResults(e) {
         let divStanding = document.getElementById(`div-standing-${group.name}`);
         divStanding.innerHTML = ''
         sim.createTableStanding(divStanding,group);
+
     }
+
+    localStorage.setItem(`sim_${sim.name}_groups`, JSON.stringify(sim.groups));
 
 }
 
@@ -534,3 +467,860 @@ function markTeamsClasified (teamsClasified, isThird) {
         
     }
 }
+
+function unmarkTeamsClasified (teamsNotClasified) {
+    for (const team of teamsNotClasified) {
+        team.clasified = false;
+        team.isThird = false; 
+    }
+}
+
+const data_ini = 
+[
+    {
+      "name": "A",
+      "teams": [
+        {
+          "name": "Italia",
+          "flag": "../assets/img/italia.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Turquía",
+          "flag": "../assets/img/turquia.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Gales",
+          "flag": "../assets/img/gales.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Suiza",
+          "flag": "../assets/img/suiza.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        }
+      ],
+      "calendar": [
+        {
+          "local": "Turquía",
+          "localFlag": "../assets/img/Turquia.webp",
+          "visitor": "Italia",
+          "visitorFlag": "../assets/img/Italia.webp",
+          "gameDate": "11 de junio de 2021 21:00",
+          "gamePlace": "Estadio Olímpico, Roma",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Gales",
+          "localFlag": "../assets/img/Gales.webp",
+          "visitor": "Suiza",
+          "visitorFlag": "../assets/img/Suiza.webp",
+          "gameDate": "12 de junio de 2021 15:00",
+          "gamePlace": "Estadio Olímpico, Bakú",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Turquía",
+          "localFlag": "../assets/img/Turquia.webp",
+          "visitor": "Gales",
+          "visitorFlag": "../assets/img/Gales.webp",
+          "gameDate": "16 de junio de 2021 18:00",
+          "gamePlace": "Estadio Olímpico, Bakú",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Italia",
+          "localFlag": "../assets/img/Italia.webp",
+          "visitor": "Suiza",
+          "visitorFlag": "../assets/img/Suiza.webp",
+          "gameDate": "16 de junio de 2021 21:00",
+          "gamePlace": "Estadio Olímpico, Roma",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Suiza",
+          "localFlag": "../assets/img/Suiza.webp",
+          "visitor": "Turquía",
+          "visitorFlag": "../assets/img/Turquia.webp",
+          "gameDate": "20 de junio de 2021 18:00",
+          "gamePlace": "Estadio Olímpico, Bakú",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Italia",
+          "localFlag": "../assets/img/Italia.webp",
+          "visitor": "Gales",
+          "visitorFlag": "../assets/img/Gales.webp",
+          "gameDate": "20 de junio de 2021 18:00",
+          "gamePlace": "Estadio Olímpico, Roma",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "teams": [
+        {
+          "name": "Bélgica",
+          "flag": "../assets/img/belgica.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Dinamarca",
+          "flag": "../assets/img/dinamarca.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Finlandia",
+          "flag": "../assets/img/finlandia.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Rusia",
+          "flag": "../assets/img/rusia.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        }
+      ],
+      "calendar": [
+        {
+          "local": "Dinamarca",
+          "localFlag": "../assets/img/Dinamarca.webp",
+          "visitor": "Finlandia",
+          "visitorFlag": "../assets/img/Finlandia.webp",
+          "gameDate": "12 de junio de 2021 18:00",
+          "gamePlace": "Parken Stadion, Copenhague",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Bélgica",
+          "localFlag": "../assets/img/Belgica.webp",
+          "visitor": "Rusia",
+          "visitorFlag": "../assets/img/Rusia.webp",
+          "gameDate": "12 de junio de 2021 21:00",
+          "gamePlace": "Estadio Krestovski, San Petersburgo",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Finlandia",
+          "localFlag": "../assets/img/Finlandia.webp",
+          "visitor": "Rusia",
+          "visitorFlag": "../assets/img/Rusia.webp",
+          "gameDate": "16 de junio de 2021 15:00",
+          "gamePlace": "Estadio Krestovski, San Petersburgo",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Dinamarca",
+          "localFlag": "../assets/img/Dinamarca.webp",
+          "visitor": "Bélgica",
+          "visitorFlag": "../assets/img/Belgica.webp",
+          "gameDate": "17 de junio de 2021 18:00",
+          "gamePlace": "Parken Stadion, Copenhague",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Rusia",
+          "localFlag": "../assets/img/Rusia.webp",
+          "visitor": "Dinamarca",
+          "visitorFlag": "../assets/img/Dinamarca.webp",
+          "gameDate": "21 de junio de 2021 21:00",
+          "gamePlace": "Parken Stadion, Copenhague",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Finlandia",
+          "localFlag": "../assets/img/Finlandia.webp",
+          "visitor": "Bélgica",
+          "visitorFlag": "../assets/img/Belgica.webp",
+          "gameDate": "21 de junio de 2021 21:00",
+          "gamePlace": "Estadio Krestovski, San Petersburgo",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "teams": [
+        {
+          "name": "Países Bajos",
+          "flag": "../assets/img/paisesbajos.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Austria",
+          "flag": "../assets/img/austria.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Ucrania",
+          "flag": "../assets/img/ucrania.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Macedonia del Norte",
+          "flag": "../assets/img/macedoniadelnorte.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        }
+      ],
+      "calendar": [
+        {
+          "local": "Austria",
+          "localFlag": "../assets/img/Austria.webp",
+          "visitor": "Macedonia del Norte",
+          "visitorFlag": "../assets/img/MacedoniadelNorte.webp",
+          "gameDate": "13 de junio de 2021 18:00",
+          "gamePlace": "Arena Națională, Bucarest",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Países Bajos",
+          "localFlag": "../assets/img/PaisesBajos.webp",
+          "visitor": "Ucrania",
+          "visitorFlag": "../assets/img/Ucrania.webp",
+          "gameDate": "13 de junio de 2021 21:00",
+          "gamePlace": "Johan Cruyff Arena, Ámsterdam",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Ucrania",
+          "localFlag": "../assets/img/Ucrania.webp",
+          "visitor": "Macedonia del Norte",
+          "visitorFlag": "../assets/img/MacedoniadelNorte.webp",
+          "gameDate": "17 de junio de 2021 15:00",
+          "gamePlace": "Arena Națională, Bucarest",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Países Bajos",
+          "localFlag": "../assets/img/PaisesBajos.webp",
+          "visitor": "Austria",
+          "visitorFlag": "../assets/img/Austria.webp",
+          "gameDate": "17 de junio de 2021 21:00",
+          "gamePlace": "Johan Cruyff Arena, Ámsterdam",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Macedonia del Norte",
+          "localFlag": "../assets/img/MacedoniadelNorte.webp",
+          "visitor": "Países Bajos",
+          "visitorFlag": "../assets/img/PaisesBajos.webp",
+          "gameDate": "21 de junio de 2021 18:00",
+          "gamePlace": "Johan Cruyff Arena, Ámsterdam",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Ucrania",
+          "localFlag": "../assets/img/Ucrania.webp",
+          "visitor": "Austria",
+          "visitorFlag": "../assets/img/Austria.webp",
+          "gameDate": "21 de junio de 2021 18:00",
+          "gamePlace": "Arena Națională, Bucarest",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        }
+      ]
+    },
+    {
+      "name": "D",
+      "teams": [
+        {
+          "name": "Inglaterra",
+          "flag": "../assets/img/inglaterra.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Croacia",
+          "flag": "../assets/img/croacia.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "República Checa",
+          "flag": "../assets/img/republicacheca.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Escocia",
+          "flag": "../assets/img/escocia.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        }
+      ],
+      "calendar": [
+        {
+          "local": "Inglaterra",
+          "localFlag": "../assets/img/Inglaterra.webp",
+          "visitor": "Croacia",
+          "visitorFlag": "../assets/img/Croacia.webp",
+          "gameDate": "13 de junio de 2021 15:00",
+          "gamePlace": "Estadio de Wembley, Londres",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Escocia",
+          "localFlag": "../assets/img/Escocia.webp",
+          "visitor": "RepúblicaCheca",
+          "visitorFlag": "../assets/img/RepublicaCheca.webp",
+          "gameDate": "14 de junio de 2021 15:00",
+          "gamePlace": "Hampden Park, Glasgow",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Croacia",
+          "localFlag": "../assets/img/Croacia.webp",
+          "visitor": "República Checa",
+          "visitorFlag": "../assets/img/RepublicaCheca.webp",
+          "gameDate": "18 de junio de 2021 18:00",
+          "gamePlace": "Hampden Park, Glasgow",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Inglaterra",
+          "localFlag": "../assets/img/Inglaterra.webp",
+          "visitor": "Escocia",
+          "visitorFlag": "../assets/img/Escocia.webp",
+          "gameDate": "18 de junio de 2021 21:00",
+          "gamePlace": "Estadio de Wembley, Londres",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Croacia",
+          "localFlag": "../assets/img/Croacia.webp",
+          "visitor": "Escocia",
+          "visitorFlag": "../assets/img/Escocia.webp",
+          "gameDate": "22 de junio de 2021 21:00",
+          "gamePlace": "Hampden Park, Glasgow",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "República Checa",
+          "localFlag": "../assets/img/RepublicaCheca.webp",
+          "visitor": "Inglaterra",
+          "visitorFlag": "../assets/img/Inglaterra.webp",
+          "gameDate": "22 de junio de 2021 21:00",
+          "gamePlace": "Estadio de Wembley, Londres",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        }
+      ]
+    },
+    {
+      "name": "E",
+      "teams": [
+        {
+          "name": "Suecia",
+          "flag": "../assets/img/suecia.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "España",
+          "flag": "../assets/img/espana.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Eslovaquia",
+          "flag": "../assets/img/eslovaquia.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Polonia",
+          "flag": "../assets/img/polonia.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        }
+      ],
+      "calendar": [
+        {
+          "local": "Polonia",
+          "localFlag": "../assets/img/Polonia.webp",
+          "visitor": "Eslovaquia",
+          "visitorFlag": "../assets/img/Eslovaquia.webp",
+          "gameDate": "14 de junio de 2021 18:00",
+          "gamePlace": "Estadio Krestovski, San Petersburgo",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "España",
+          "localFlag": "../assets/img/Espana.webp",
+          "visitor": "Suecia",
+          "visitorFlag": "../assets/img/Suecia.webp",
+          "gameDate": "14 de junio de 2021 21:00",
+          "gamePlace": "Estadio La Cartuja, Sevilla",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Suecia",
+          "localFlag": "../assets/img/Suecia.webp",
+          "visitor": "Eslovaquia",
+          "visitorFlag": "../assets/img/Eslovaquia.webp",
+          "gameDate": "18 de junio de 2021 15:00",
+          "gamePlace": "Estadio Krestovski, San Petersburgo",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "España",
+          "localFlag": "../assets/img/Espana.webp",
+          "visitor": "Polonia",
+          "visitorFlag": "../assets/img/Polonia.webp",
+          "gameDate": "19 de junio de 2021 21:00",
+          "gamePlace": "Estadio La Cartuja, Sevilla",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Eslovaquia",
+          "localFlag": "../assets/img/Eslovaquia.webp",
+          "visitor": "España",
+          "visitorFlag": "../assets/img/Espana.webp",
+          "gameDate": "23 de junio de 2021 18:00",
+          "gamePlace": "Estadio La Cartuja, Sevilla",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Suecia",
+          "localFlag": "../assets/img/Suecia.webp",
+          "visitor": "Polonia",
+          "visitorFlag": "../assets/img/Polonia.webp",
+          "gameDate": "23 de junio de 2021 18:00",
+          "gamePlace": "Estadio Krestovski, San Petersburgo",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        }
+      ]
+    },
+    {
+      "name": "F",
+      "teams": [
+        {
+          "name": "Francia",
+          "flag": "../assets/img/francia.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Alemania",
+          "flag": "../assets/img/alemania.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Portugal",
+          "flag": "../assets/img/portugal.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        },
+        {
+          "name": "Hungría",
+          "flag": "../assets/img/hungria.webp",
+          "gamesPlayed": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "points": 0,
+          "goalsDifference": 0,
+          "clasified": false,
+          "isThird": false
+        }
+      ],
+      "calendar": [
+        {
+          "local": "Hungría",
+          "localFlag": "../assets/img/Hungria.webp",
+          "visitor": "Portugal",
+          "visitorFlag": "../assets/img/Portugal.webp",
+          "gameDate": "15 de junio de 2021 18:00",
+          "gamePlace": "Puskás Aréna, Budapest",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Francia",
+          "localFlag": "../assets/img/Francia.webp",
+          "visitor": "Alemania",
+          "visitorFlag": "../assets/img/Alemania.webp",
+          "gameDate": "15 de junio de 2021 21:00",
+          "gamePlace": "Allianz Arena, Múnich",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Hungría",
+          "localFlag": "../assets/img/Hungria.webp",
+          "visitor": "Francia",
+          "visitorFlag": "../assets/img/Francia.webp",
+          "gameDate": "19 de junio de 2021 15:00",
+          "gamePlace": "Puskás Aréna, Budapest",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Portugal",
+          "localFlag": "../assets/img/Portugal.webp",
+          "visitor": "Alemania",
+          "visitorFlag": "../assets/img/Alemania.webp",
+          "gameDate": "19 de junio de 2021 18:00",
+          "gamePlace": "Allianz Arena, Múnich",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Portugal",
+          "localFlag": "../assets/img/Portugal.webp",
+          "visitor": "Francia",
+          "visitorFlag": "../assets/img/Francia.webp",
+          "gameDate": "23 de junio de 2021 21:00",
+          "gamePlace": "Puskás Aréna, Budapest",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        },
+        {
+          "local": "Alemania",
+          "localFlag": "../assets/img/Alemania.webp",
+          "visitor": "Hungría",
+          "visitorFlag": "../assets/img/Hungria.webp",
+          "gameDate": "23 de junio de 2021 21:00",
+          "gamePlace": "Allianz Arena, Múnich",
+          "goalsLocal": "",
+          "goalsVisitor": "",
+          "winner": "",
+          "losser": "",
+          "draw": ""
+        }
+      ]
+    }
+  ]
