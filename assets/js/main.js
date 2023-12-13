@@ -1,7 +1,3 @@
-const removeAccents = (str) => {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
-
 let qty_teams_clasified = 0;
 let qty_third_teams_clasified = 0;
 let sim;
@@ -672,9 +668,9 @@ const data_ini =
             "calendar": [
                 {
                     "local": "Dinamarca",
-                    "localFlag": "../assets/img/Dinamarca.webp",
+                    "localFlag": "../assets/img/dinamarca.webp",
                     "visitor": "Finlandia",
-                    "visitorFlag": "../assets/img/Finlandia.webp",
+                    "visitorFlag": "../assets/img/finlandia.webp",
                     "gameDate": "12 de junio de 2021 18:00",
                     "gamePlace": "Parken Stadion, Copenhague",
                     "goalsLocal": "",
@@ -685,9 +681,9 @@ const data_ini =
                 },
                 {
                     "local": "Bélgica",
-                    "localFlag": "../assets/img/Belgica.webp",
+                    "localFlag": "../assets/img/belgica.webp",
                     "visitor": "Rusia",
-                    "visitorFlag": "../assets/img/Rusia.webp",
+                    "visitorFlag": "../assets/img/rusia.webp",
                     "gameDate": "12 de junio de 2021 21:00",
                     "gamePlace": "Estadio Krestovski, San Petersburgo",
                     "goalsLocal": "",
@@ -698,9 +694,9 @@ const data_ini =
                 },
                 {
                     "local": "Finlandia",
-                    "localFlag": "../assets/img/Finlandia.webp",
+                    "localFlag": "../assets/img/finlandia.webp",
                     "visitor": "Rusia",
-                    "visitorFlag": "../assets/img/Rusia.webp",
+                    "visitorFlag": "../assets/img/rusia.webp",
                     "gameDate": "16 de junio de 2021 15:00",
                     "gamePlace": "Estadio Krestovski, San Petersburgo",
                     "goalsLocal": "",
@@ -711,9 +707,9 @@ const data_ini =
                 },
                 {
                     "local": "Dinamarca",
-                    "localFlag": "../assets/img/Dinamarca.webp",
+                    "localFlag": "../assets/img/dinamarca.webp",
                     "visitor": "Bélgica",
-                    "visitorFlag": "../assets/img/Belgica.webp",
+                    "visitorFlag": "../assets/img/belgica.webp",
                     "gameDate": "17 de junio de 2021 18:00",
                     "gamePlace": "Parken Stadion, Copenhague",
                     "goalsLocal": "",
@@ -724,9 +720,9 @@ const data_ini =
                 },
                 {
                     "local": "Rusia",
-                    "localFlag": "../assets/img/Rusia.webp",
+                    "localFlag": "../assets/img/rusia.webp",
                     "visitor": "Dinamarca",
-                    "visitorFlag": "../assets/img/Dinamarca.webp",
+                    "visitorFlag": "../assets/img/dinamarca.webp",
                     "gameDate": "21 de junio de 2021 21:00",
                     "gamePlace": "Parken Stadion, Copenhague",
                     "goalsLocal": "",
@@ -737,9 +733,9 @@ const data_ini =
                 },
                 {
                     "local": "Finlandia",
-                    "localFlag": "../assets/img/Finlandia.webp",
+                    "localFlag": "../assets/img/finlandia.webp",
                     "visitor": "Bélgica",
-                    "visitorFlag": "../assets/img/Belgica.webp",
+                    "visitorFlag": "../assets/img/belgica.webp",
                     "gameDate": "21 de junio de 2021 21:00",
                     "gamePlace": "Estadio Krestovski, San Petersburgo",
                     "goalsLocal": "",
@@ -813,9 +809,9 @@ const data_ini =
             "calendar": [
                 {
                     "local": "Austria",
-                    "localFlag": "../assets/img/Austria.webp",
+                    "localFlag": "../assets/img/austria.webp",
                     "visitor": "Macedonia del Norte",
-                    "visitorFlag": "../assets/img/MacedoniadelNorte.webp",
+                    "visitorFlag": "../assets/img/macedoniadelnorte.webp",
                     "gameDate": "13 de junio de 2021 18:00",
                     "gamePlace": "Arena Națională, Bucarest",
                     "goalsLocal": "",
@@ -826,9 +822,9 @@ const data_ini =
                 },
                 {
                     "local": "Países Bajos",
-                    "localFlag": "../assets/img/PaisesBajos.webp",
+                    "localFlag": "../assets/img/paisesbajos.webp",
                     "visitor": "Ucrania",
-                    "visitorFlag": "../assets/img/Ucrania.webp",
+                    "visitorFlag": "../assets/img/ucrania.webp",
                     "gameDate": "13 de junio de 2021 21:00",
                     "gamePlace": "Johan Cruyff Arena, Ámsterdam",
                     "goalsLocal": "",
@@ -839,9 +835,9 @@ const data_ini =
                 },
                 {
                     "local": "Ucrania",
-                    "localFlag": "../assets/img/Ucrania.webp",
+                    "localFlag": "../assets/img/ucrania.webp",
                     "visitor": "Macedonia del Norte",
-                    "visitorFlag": "../assets/img/MacedoniadelNorte.webp",
+                    "visitorFlag": "../assets/img/macedoniadelnorte.webp",
                     "gameDate": "17 de junio de 2021 15:00",
                     "gamePlace": "Arena Națională, Bucarest",
                     "goalsLocal": "",
@@ -852,9 +848,9 @@ const data_ini =
                 },
                 {
                     "local": "Países Bajos",
-                    "localFlag": "../assets/img/PaisesBajos.webp",
+                    "localFlag": "../assets/img/paisesbajos.webp",
                     "visitor": "Austria",
-                    "visitorFlag": "../assets/img/Austria.webp",
+                    "visitorFlag": "../assets/img/austria.webp",
                     "gameDate": "17 de junio de 2021 21:00",
                     "gamePlace": "Johan Cruyff Arena, Ámsterdam",
                     "goalsLocal": "",
@@ -865,9 +861,9 @@ const data_ini =
                 },
                 {
                     "local": "Macedonia del Norte",
-                    "localFlag": "../assets/img/MacedoniadelNorte.webp",
+                    "localFlag": "../assets/img/macedoniadelnorte.webp",
                     "visitor": "Países Bajos",
-                    "visitorFlag": "../assets/img/PaisesBajos.webp",
+                    "visitorFlag": "../assets/img/paisesbajos.webp",
                     "gameDate": "21 de junio de 2021 18:00",
                     "gamePlace": "Johan Cruyff Arena, Ámsterdam",
                     "goalsLocal": "",
@@ -878,9 +874,9 @@ const data_ini =
                 },
                 {
                     "local": "Ucrania",
-                    "localFlag": "../assets/img/Ucrania.webp",
+                    "localFlag": "../assets/img/ucrania.webp",
                     "visitor": "Austria",
-                    "visitorFlag": "../assets/img/Austria.webp",
+                    "visitorFlag": "../assets/img/austria.webp",
                     "gameDate": "21 de junio de 2021 18:00",
                     "gamePlace": "Arena Națională, Bucarest",
                     "goalsLocal": "",
@@ -954,9 +950,9 @@ const data_ini =
             "calendar": [
                 {
                     "local": "Inglaterra",
-                    "localFlag": "../assets/img/Inglaterra.webp",
+                    "localFlag": "../assets/img/inglaterra.webp",
                     "visitor": "Croacia",
-                    "visitorFlag": "../assets/img/Croacia.webp",
+                    "visitorFlag": "../assets/img/croacia.webp",
                     "gameDate": "13 de junio de 2021 15:00",
                     "gamePlace": "Estadio de Wembley, Londres",
                     "goalsLocal": "",
@@ -967,9 +963,9 @@ const data_ini =
                 },
                 {
                     "local": "Escocia",
-                    "localFlag": "../assets/img/Escocia.webp",
+                    "localFlag": "../assets/img/escocia.webp",
                     "visitor": "República Checa",
-                    "visitorFlag": "../assets/img/RepublicaCheca.webp",
+                    "visitorFlag": "../assets/img/republicacheca.webp",
                     "gameDate": "14 de junio de 2021 15:00",
                     "gamePlace": "Hampden Park, Glasgow",
                     "goalsLocal": "",
@@ -980,9 +976,9 @@ const data_ini =
                 },
                 {
                     "local": "Croacia",
-                    "localFlag": "../assets/img/Croacia.webp",
+                    "localFlag": "../assets/img/croacia.webp",
                     "visitor": "República Checa",
-                    "visitorFlag": "../assets/img/RepublicaCheca.webp",
+                    "visitorFlag": "../assets/img/republicacheca.webp",
                     "gameDate": "18 de junio de 2021 18:00",
                     "gamePlace": "Hampden Park, Glasgow",
                     "goalsLocal": "",
@@ -993,9 +989,9 @@ const data_ini =
                 },
                 {
                     "local": "Inglaterra",
-                    "localFlag": "../assets/img/Inglaterra.webp",
+                    "localFlag": "../assets/img/inglaterra.webp",
                     "visitor": "Escocia",
-                    "visitorFlag": "../assets/img/Escocia.webp",
+                    "visitorFlag": "../assets/img/escocia.webp",
                     "gameDate": "18 de junio de 2021 21:00",
                     "gamePlace": "Estadio de Wembley, Londres",
                     "goalsLocal": "",
@@ -1006,9 +1002,9 @@ const data_ini =
                 },
                 {
                     "local": "Croacia",
-                    "localFlag": "../assets/img/Croacia.webp",
+                    "localFlag": "../assets/img/croacia.webp",
                     "visitor": "Escocia",
-                    "visitorFlag": "../assets/img/Escocia.webp",
+                    "visitorFlag": "../assets/img/escocia.webp",
                     "gameDate": "22 de junio de 2021 21:00",
                     "gamePlace": "Hampden Park, Glasgow",
                     "goalsLocal": "",
@@ -1019,9 +1015,9 @@ const data_ini =
                 },
                 {
                     "local": "República Checa",
-                    "localFlag": "../assets/img/RepublicaCheca.webp",
+                    "localFlag": "../assets/img/republicaCheca.webp",
                     "visitor": "Inglaterra",
-                    "visitorFlag": "../assets/img/Inglaterra.webp",
+                    "visitorFlag": "../assets/img/inglaterra.webp",
                     "gameDate": "22 de junio de 2021 21:00",
                     "gamePlace": "Estadio de Wembley, Londres",
                     "goalsLocal": "",
@@ -1095,9 +1091,9 @@ const data_ini =
             "calendar": [
                 {
                     "local": "Polonia",
-                    "localFlag": "../assets/img/Polonia.webp",
+                    "localFlag": "../assets/img/polonia.webp",
                     "visitor": "Eslovaquia",
-                    "visitorFlag": "../assets/img/Eslovaquia.webp",
+                    "visitorFlag": "../assets/img/eslovaquia.webp",
                     "gameDate": "14 de junio de 2021 18:00",
                     "gamePlace": "Estadio Krestovski, San Petersburgo",
                     "goalsLocal": "",
@@ -1108,9 +1104,9 @@ const data_ini =
                 },
                 {
                     "local": "España",
-                    "localFlag": "../assets/img/Espana.webp",
+                    "localFlag": "../assets/img/espana.webp",
                     "visitor": "Suecia",
-                    "visitorFlag": "../assets/img/Suecia.webp",
+                    "visitorFlag": "../assets/img/suecia.webp",
                     "gameDate": "14 de junio de 2021 21:00",
                     "gamePlace": "Estadio La Cartuja, Sevilla",
                     "goalsLocal": "",
@@ -1121,9 +1117,9 @@ const data_ini =
                 },
                 {
                     "local": "Suecia",
-                    "localFlag": "../assets/img/Suecia.webp",
+                    "localFlag": "../assets/img/suecia.webp",
                     "visitor": "Eslovaquia",
-                    "visitorFlag": "../assets/img/Eslovaquia.webp",
+                    "visitorFlag": "../assets/img/eslovaquia.webp",
                     "gameDate": "18 de junio de 2021 15:00",
                     "gamePlace": "Estadio Krestovski, San Petersburgo",
                     "goalsLocal": "",
@@ -1134,9 +1130,9 @@ const data_ini =
                 },
                 {
                     "local": "España",
-                    "localFlag": "../assets/img/Espana.webp",
+                    "localFlag": "../assets/img/espana.webp",
                     "visitor": "Polonia",
-                    "visitorFlag": "../assets/img/Polonia.webp",
+                    "visitorFlag": "../assets/img/polonia.webp",
                     "gameDate": "19 de junio de 2021 21:00",
                     "gamePlace": "Estadio La Cartuja, Sevilla",
                     "goalsLocal": "",
@@ -1147,9 +1143,9 @@ const data_ini =
                 },
                 {
                     "local": "Eslovaquia",
-                    "localFlag": "../assets/img/Eslovaquia.webp",
+                    "localFlag": "../assets/img/eslovaquia.webp",
                     "visitor": "España",
-                    "visitorFlag": "../assets/img/Espana.webp",
+                    "visitorFlag": "../assets/img/espana.webp",
                     "gameDate": "23 de junio de 2021 18:00",
                     "gamePlace": "Estadio La Cartuja, Sevilla",
                     "goalsLocal": "",
@@ -1160,9 +1156,9 @@ const data_ini =
                 },
                 {
                     "local": "Suecia",
-                    "localFlag": "../assets/img/Suecia.webp",
+                    "localFlag": "../assets/img/suecia.webp",
                     "visitor": "Polonia",
-                    "visitorFlag": "../assets/img/Polonia.webp",
+                    "visitorFlag": "../assets/img/polonia.webp",
                     "gameDate": "23 de junio de 2021 18:00",
                     "gamePlace": "Estadio Krestovski, San Petersburgo",
                     "goalsLocal": "",
@@ -1236,9 +1232,9 @@ const data_ini =
             "calendar": [
                 {
                     "local": "Hungría",
-                    "localFlag": "../assets/img/Hungria.webp",
+                    "localFlag": "../assets/img/hungria.webp",
                     "visitor": "Portugal",
-                    "visitorFlag": "../assets/img/Portugal.webp",
+                    "visitorFlag": "../assets/img/portugal.webp",
                     "gameDate": "15 de junio de 2021 18:00",
                     "gamePlace": "Puskás Aréna, Budapest",
                     "goalsLocal": "",
@@ -1249,9 +1245,9 @@ const data_ini =
                 },
                 {
                     "local": "Francia",
-                    "localFlag": "../assets/img/Francia.webp",
+                    "localFlag": "../assets/img/francia.webp",
                     "visitor": "Alemania",
-                    "visitorFlag": "../assets/img/Alemania.webp",
+                    "visitorFlag": "../assets/img/alemania.webp",
                     "gameDate": "15 de junio de 2021 21:00",
                     "gamePlace": "Allianz Arena, Múnich",
                     "goalsLocal": "",
@@ -1262,9 +1258,9 @@ const data_ini =
                 },
                 {
                     "local": "Hungría",
-                    "localFlag": "../assets/img/Hungria.webp",
+                    "localFlag": "../assets/img/hungria.webp",
                     "visitor": "Francia",
-                    "visitorFlag": "../assets/img/Francia.webp",
+                    "visitorFlag": "../assets/img/francia.webp",
                     "gameDate": "19 de junio de 2021 15:00",
                     "gamePlace": "Puskás Aréna, Budapest",
                     "goalsLocal": "",
@@ -1275,9 +1271,9 @@ const data_ini =
                 },
                 {
                     "local": "Portugal",
-                    "localFlag": "../assets/img/Portugal.webp",
+                    "localFlag": "../assets/img/portugal.webp",
                     "visitor": "Alemania",
-                    "visitorFlag": "../assets/img/Alemania.webp",
+                    "visitorFlag": "../assets/img/alemania.webp",
                     "gameDate": "19 de junio de 2021 18:00",
                     "gamePlace": "Allianz Arena, Múnich",
                     "goalsLocal": "",
@@ -1288,9 +1284,9 @@ const data_ini =
                 },
                 {
                     "local": "Portugal",
-                    "localFlag": "../assets/img/Portugal.webp",
+                    "localFlag": "../assets/img/portugal.webp",
                     "visitor": "Francia",
-                    "visitorFlag": "../assets/img/Francia.webp",
+                    "visitorFlag": "../assets/img/francia.webp",
                     "gameDate": "23 de junio de 2021 21:00",
                     "gamePlace": "Puskás Aréna, Budapest",
                     "goalsLocal": "",
@@ -1301,9 +1297,9 @@ const data_ini =
                 },
                 {
                     "local": "Alemania",
-                    "localFlag": "../assets/img/Alemania.webp",
+                    "localFlag": "../assets/img/alemania.webp",
                     "visitor": "Hungría",
-                    "visitorFlag": "../assets/img/Hungria.webp",
+                    "visitorFlag": "../assets/img/hungria.webp",
                     "gameDate": "23 de junio de 2021 21:00",
                     "gamePlace": "Allianz Arena, Múnich",
                     "goalsLocal": "",
