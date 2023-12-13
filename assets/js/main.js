@@ -262,7 +262,7 @@ function createTeams(teams) {
  * @param  groupsInfo  (JSON)
  * @returns 
  */
-function createEuroGroups(groupsInfo) {
+function createGroups(groupsInfo) {
 
     let groups = []
 
@@ -277,16 +277,9 @@ function createEuroGroups(groupsInfo) {
     return groups;
 }
 
-function createCopaAmericaGroups() {
-    const GROUP_A = new Group("A", createTeams(["Argentina", "Uruguay", "Paraguay", "Chile", "Bolivia"]), createCalendar("A_AMERICA"));
-    const GROUP_B = new Group("B", createTeams(["Brasil", "Perú", "Colombia", "Ecuador", "Venezuela"]), createCalendar("B_AMERICA"));
-
-    return [GROUP_A, GROUP_B]
-}
-
 // SIMULADOR DE EUROCOPA
 function initEurocopa() {
-    sim = localStorage.getItem("sim_Eurocopa_groups") != undefined ? new Simulator("Eurocopa", createEuroGroups(JSON.parse(localStorage.getItem("sim_Eurocopa_groups")))) : new Simulator("Eurocopa", createEuroGroups(data_ini));
+    sim = localStorage.getItem("sim_Eurocopa_groups") != undefined ? new Simulator("Eurocopa", createGroups(JSON.parse(localStorage.getItem("sim_Eurocopa_groups")))) : new Simulator("Eurocopa", createGroups(data_ini));
     qty_teams_clasified = 2;
     qty_third_teams_clasified = 4;
     sim.createTableGroups();
@@ -294,10 +287,9 @@ function initEurocopa() {
 
 // SIMULADOR DE Copa America
 function initCopaAmerica() {
-    const sim = new Simulator("Copa América", createCopaAmericaGroups());
+    sim = localStorage.getItem("sim_CopaAmerica_groups") != undefined ? new Simulator("CopaAmerica", createGroups(JSON.parse(localStorage.getItem("sim_CopaAmerica_groups")))) : new Simulator("CopaAmerica", createGroups(data_ini_ca));
     qty_teams_clasified = 4;
     qty_third_teams_clasified = 0;
-    simulateGroupStage(sim.groups);
     sim.createTableGroups();
 }
 
@@ -428,9 +420,9 @@ function sortTeams(teams) {
             return b.gamesPlayed - a.gamesPlayed;
         }
 
-        // Criterio 2: Mayor cantidad de goles a favor
-        if (a.goalsFor != b.goalsFor) {
-            return b.goalsFor - a.goalsFor;
+        // Criterio 2: Mayor diferencia de goles
+        if (a.goalsDifference != b.goalsDifference) {
+            return b.goalsDifference - a.goalsDifference;
         }
 
         return 0;
@@ -441,7 +433,7 @@ function sortTeams(teams) {
 // Función para obtener el mejor tercero según las reglas de la UEFA
 function getBestThird(groups) {
     // Obtener todos los equipos terceros
-    const third = groups.map(group => group.teams[2]);
+    const third = groups.map(group => group.teams[2])
 
     // ordenedas los equipos seleccionadoss
     sortTeams(third);
@@ -976,7 +968,7 @@ const data_ini =
                 {
                     "local": "Escocia",
                     "localFlag": "../assets/img/Escocia.webp",
-                    "visitor": "RepúblicaCheca",
+                    "visitor": "República Checa",
                     "visitorFlag": "../assets/img/RepublicaCheca.webp",
                     "gameDate": "14 de junio de 2021 15:00",
                     "gamePlace": "Hampden Park, Glasgow",
@@ -1323,3 +1315,422 @@ const data_ini =
             ]
         }
     ]
+
+
+const data_ini_ca = 
+[
+    {
+        "name": "A",
+        "teams": [
+            {
+                "name": "Argentina",
+                "flag": "../assets/img/argentina.webp",
+                "gamesPlayed": 0,
+                "wins": 0,
+                "draws": 0,
+                "losses": 0,
+                "goalsFor": 0,
+                "goalsAgainst": 0,
+                "points": 0,
+                "goalsDifference": 0,
+                "clasified": false,
+                "isThird": false
+            },
+            {
+                "name": "Uruguay",
+                "flag": "../assets/img/uruguay.webp",
+                "gamesPlayed": 0,
+                "wins": 0,
+                "draws": 0,
+                "losses": 0,
+                "goalsFor": 0,
+                "goalsAgainst": 0,
+                "points": 0,
+                "goalsDifference": 0,
+                "clasified": false,
+                "isThird": false
+            },
+            {
+                "name": "Paraguay",
+                "flag": "../assets/img/paraguay.webp",
+                "gamesPlayed": 0,
+                "wins": 0,
+                "draws": 0,
+                "losses": 0,
+                "goalsFor": 0,
+                "goalsAgainst": 0,
+                "points": 0,
+                "goalsDifference": 0,
+                "clasified": false,
+                "isThird": false
+            },
+            {
+                "name": "Chile",
+                "flag": "../assets/img/chile.webp",
+                "gamesPlayed": 0,
+                "wins": 0,
+                "draws": 0,
+                "losses": 0,
+                "goalsFor": 0,
+                "goalsAgainst": 0,
+                "points": 0,
+                "goalsDifference": 0,
+                "clasified": false,
+                "isThird": false
+            },
+            {
+                "name": "Bolivia",
+                "flag": "../assets/img/bolivia.webp",
+                "gamesPlayed": 0,
+                "wins": 0,
+                "draws": 0,
+                "losses": 0,
+                "goalsFor": 0,
+                "goalsAgainst": 0,
+                "points": 0,
+                "goalsDifference": 0,
+                "clasified": false,
+                "isThird": false
+            }
+        ],
+        "calendar": [
+            {
+                "local": "Argentina",
+                "localFlag": "../assets/img/argentina.webp",
+                "visitor": "Chile",
+                "visitorFlag": "../assets/img/chile.webp",
+                "gameDate": "14 de junio de 2021 18:00",
+                "gamePlace": "Estadio Nilton Santos, Río de Janeiro",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Paraguay",
+                "localFlag": "../assets/img/paraguay.webp",
+                "visitor": "Bolivia",
+                "visitorFlag": "../assets/img/bolivia.webp",
+                "gameDate": "14 de junio de 2021 21:00",
+                "gamePlace": "Estadio Olímpico, Goiânia",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Chile",
+                "localFlag": "../assets/img/chile.webp",
+                "visitor": "Bolivia",
+                "visitorFlag": "../assets/img/bolivia.webp",
+                "gameDate": "18 de junio de 2021 17:00",
+                "gamePlace": "Arena Pantanal, Cuiabá",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Argentina",
+                "localFlag": "../assets/img/argentina.webp",
+                "visitor": "Uruguay",
+                "visitorFlag": "../assets/img/uruguay.webp",
+                "gameDate": "18 de junio de 2021 21:00",
+                "gamePlace": "Estadio Mané Garrincha, Brasilia",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Uruguay",
+                "localFlag": "../assets/img/uruguay.webp",
+                "visitor": "Chile",
+                "visitorFlag": "../assets/img/chile.webp",
+                "gameDate": "21 de junio de 2021 17:00",
+                "gamePlace": "Arena Pantanal, Cuiabá",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Argentina",
+                "localFlag": "../assets/img/argentina.webp",
+                "visitor": "Paraguay",
+                "visitorFlag": "../assets/img/paraguay.webp",
+                "gameDate": "21 de junio de 2021 21:00",
+                "gamePlace": "Estadio Mané Garrincha, Brasilia",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Bolivia",
+                "localFlag": "../assets/img/bolivia.webp",
+                "visitor": "Uruguay",
+                "visitorFlag": "../assets/img/uruguay.webp",
+                "gameDate": "24 de junio de 2021 17:00",
+                "gamePlace": "Arena Pantanal, Cuiabá",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Chile",
+                "localFlag": "../assets/img/chile.webp",
+                "visitor": "Paraguay",
+                "visitorFlag": "../assets/img/paraguay.webp",
+                "gameDate": "24 de junio de 2021 21:00",
+                "gamePlace": "Estadio Mané Garrincha, Brasilia",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Bolivia",
+                "localFlag": "../assets/img/bolivia.webp",
+                "visitor": "Argentina",
+                "visitorFlag": "../assets/img/argentina.webp",
+                "gameDate": "28 de junio de 2021 20:00",
+                "gamePlace": "Arena Pantanal, Cuiabá",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Uruguay",
+                "localFlag": "../assets/img/uruguay.webp",
+                "visitor": "Paraguay",
+                "visitorFlag": "../assets/img/paraguay.webp",
+                "gameDate": "28 de junio de 2021 21:00",
+                "gamePlace": "Estadio Nilton Santos, Río de Janeiro",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            }
+        ]
+    },
+    {
+        "name": "B",
+        "teams": [
+            {
+                "name": "Brasil",
+                "flag": "../assets/img/brasil.webp",
+                "gamesPlayed": 0,
+                "wins": 0,
+                "draws": 0,
+                "losses": 0,
+                "goalsFor": 0,
+                "goalsAgainst": 0,
+                "points": 0,
+                "goalsDifference": 0,
+                "clasified": false,
+                "isThird": false
+            },
+            {
+                "name": "Perú",
+                "flag": "../assets/img/peru.webp",
+                "gamesPlayed": 0,
+                "wins": 0,
+                "draws": 0,
+                "losses": 0,
+                "goalsFor": 0,
+                "goalsAgainst": 0,
+                "points": 0,
+                "goalsDifference": 0,
+                "clasified": false,
+                "isThird": false
+            },
+            {
+                "name": "Colombia",
+                "flag": "../assets/img/colombia.webp",
+                "gamesPlayed": 0,
+                "wins": 0,
+                "draws": 0,
+                "losses": 0,
+                "goalsFor": 0,
+                "goalsAgainst": 0,
+                "points": 0,
+                "goalsDifference": 0,
+                "clasified": false,
+                "isThird": false
+            },
+            {
+                "name": "Ecuador",
+                "flag": "../assets/img/ecuador.webp",
+                "gamesPlayed": 0,
+                "wins": 0,
+                "draws": 0,
+                "losses": 0,
+                "goalsFor": 0,
+                "goalsAgainst": 0,
+                "points": 0,
+                "goalsDifference": 0,
+                "clasified": false,
+                "isThird": false
+            },
+            {
+                "name": "Venezuela",
+                "flag": "../assets/img/venezuela.webp",
+                "gamesPlayed": 0,
+                "wins": 0,
+                "draws": 0,
+                "losses": 0,
+                "goalsFor": 0,
+                "goalsAgainst": 0,
+                "points": 0,
+                "goalsDifference": 0,
+                "clasified": false,
+                "isThird": false
+            }
+        ],
+        "calendar": [
+            {
+                "local": "Brasil",
+                "localFlag": "../assets/img/brasil.webp",
+                "visitor": "Venezuela",
+                "visitorFlag": "../assets/img/veenzuela.webp",
+                "gameDate": "13 de junio de 2021 18:00",
+                "gamePlace": "Estadio Mané Garrincha, Brasilia",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Colombia",
+                "localFlag": "../assets/img/colombia.webp",
+                "visitor": "Ecuador",
+                "visitorFlag": "../assets/img/ecuador.webp",
+                "gameDate": "13 de junio de 2021 20:00",
+                "gamePlace": "Arena Pantanal, Cuiabá",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Colombia",
+                "localFlag": "../assets/img/colombia.webp",
+                "visitor": "Venezuela",
+                "visitorFlag": "../assets/img/venezuela.webp",
+                "gameDate": "17 de junio de 2021 18:00",
+                "gamePlace": "	Estadio Olímpico, Goiânia",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Brasil",
+                "localFlag": "../assets/img/brasil.webp",
+                "visitor": "Perú",
+                "visitorFlag": "../assets/img/peru.webp",
+                "gameDate": "17 de junio de 2021 18:00",
+                "gamePlace": "Estadio Nilton Santos, Río de Janeiro",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Venezuela",
+                "localFlag": "../assets/img/venezuela.webp",
+                "visitor": "Ecuador",
+                "visitorFlag": "../assets/img/ecuador.webp",
+                "gameDate": "20 de junio de 2021 18:00",
+                "gamePlace": "Estadio Nilton Santos, Río de Janeiro",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Colombia",
+                "localFlag": "../assets/img/colombia.webp",
+                "visitor": "Perú",
+                "visitorFlag": "../assets/img/peru.webp",
+                "gameDate": "20 de junio de 2021 21:00",
+                "gamePlace": "Estadio Olímpico, Goiânia",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Ecuador",
+                "localFlag": "../assets/img/ecuador.webp",
+                "visitor": "Perú",
+                "visitorFlag": "../assets/img/peru.webp",
+                "gameDate": "23 de junio de 2021 18:00",
+                "gamePlace": "Estadio Olímpico, Goiânia",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Brasil",
+                "localFlag": "../assets/img/brasil.webp",
+                "visitor": "Colombia",
+                "visitorFlag": "../assets/img/colombia.webp",
+                "gameDate": "23 de junio de 2021 21:00",
+                "gamePlace": "Estadio Nilton Santos, Río de Janeiro",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Brasil",
+                "localFlag": "../assets/img/brasil.webp",
+                "visitor": "Ecuador",
+                "visitorFlag": "../assets/img/ecuador.webp",
+                "gameDate": "27 de junio de 2021 18:00",
+                "gamePlace": "	Estadio Olímpico, Goiânia",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            },
+            {
+                "local": "Venezuela",
+                "localFlag": "../assets/img/venezuela.webp",
+                "visitor": "Perú",
+                "visitorFlag": "../assets/img/peru.webp",
+                "gameDate": "27 de junio de 2021 18:00",
+                "gamePlace": "Estadio Mané Garrincha, Brasilia",
+                "goalsLocal": "",
+                "goalsVisitor": "",
+                "winner": "",
+                "losser": "",
+                "draw": ""
+            }
+        ]
+    }
+]
