@@ -110,11 +110,11 @@ class Simulator {
 }
 
 class Calendar {
-    constructor(local, visitor, gameDate, gamePlace, goalsLocal, goalsVisitor, winner, losser, draw) {
+    constructor(local, visitor, gameDate, gamePlace, goalsLocal, goalsVisitor, winner, losser, draw, localFlag, visitorFlag) {
         this.local = local;
-        this.localFlag = `../assets/img/${removeAccents(local).replace(/\s+/g, "")}.webp`
+        this.localFlag = localFlag;
         this.visitor = visitor;
-        this.visitorFlag = `../assets/img/${removeAccents(visitor).replace(/\s+/g, "")}.webp`
+        this.visitorFlag = visitorFlag;
         this.gameDate = gameDate;
         this.gamePlace = gamePlace;
         this.goalsLocal = goalsLocal;
@@ -153,9 +153,9 @@ class Calendar {
 }
 
 class Team {
-    constructor(name, gamesPlayed, wins, draws, losses, goalsFor, goalsAgainst, points, clasified, isThird) {
+    constructor(name, gamesPlayed, wins, draws, losses, goalsFor, goalsAgainst, points, clasified, isThird, flag) {
         this.name = name;
-        this.flag = `../assets/img/${removeAccents(name).toLowerCase().replace(/\s+/g, "")}.webp`;
+        this.flag = flag;
         this.gamesPlayed = gamesPlayed;
         this.wins = wins;
         this.draws = draws;
@@ -233,7 +233,7 @@ function createCalendar(calendar) {
     let games = []
 
     calendar.forEach(c => {
-        let game = new Calendar(c.local, c.visitor, c.gameDate, c.gamePlace, c.goalsLocal, c.goalsVisitor, c.winner, c.losser, c.draw);
+        let game = new Calendar(c.local, c.visitor, c.gameDate, c.gamePlace, c.goalsLocal, c.goalsVisitor, c.winner, c.losser, c.draw, c.localFlag, c.visitorFlag);
         games.push(game);
     })
 
@@ -250,7 +250,7 @@ function createTeams(teams) {
     let teamList = []
     if (teams.length > 0) {
         for (const team of teams) {
-            teamList.push(new Team(team.name, team.gamesPlayed, team.wins, team.draws, team.losses, team.goalsFor, team.goalsAgainst, team.points, team.clasified, team.isThird));
+            teamList.push(new Team(team.name, team.gamesPlayed, team.wins, team.draws, team.losses, team.goalsFor, team.goalsAgainst, team.points, team.clasified, team.isThird, team.flag));
         }
     }
 
@@ -1605,7 +1605,7 @@ const data_ini_ca =
                 "local": "Brasil",
                 "localFlag": "../assets/img/brasil.webp",
                 "visitor": "Venezuela",
-                "visitorFlag": "../assets/img/veenzuela.webp",
+                "visitorFlag": "../assets/img/venezuela.webp",
                 "gameDate": "13 de junio de 2021 18:00",
                 "gamePlace": "Estadio Mané Garrincha, Brasilia",
                 "goalsLocal": "",
