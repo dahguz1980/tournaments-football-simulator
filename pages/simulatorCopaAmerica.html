@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de la Copa América</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="icon" type="image/jpg" href="./assets/img/favicon.png"/>
 </head>
 
 <body>
@@ -26,45 +28,29 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-xxs align-items-center">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Inicio</a>
+                                <a class="nav-link " href="#">Inicio</a>
                             </li>
                             <li class="nav-item dropdown text-center">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Simuladores
                                 </a>
                                 <ul class="dropdown-menu text-xxs text-center" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="./simulatorEuro.html">Eurocopa</a></li>
-                                    <li><a class="dropdown-item" href="#">Copa América</a></li>
+                                    <li><a id="EURO2020" class="dropdown-item" href="./simulatorEuro.html">Eurocopa</a></li>
+                                    <li><a id="CA2020" class="active current dropdown-item" href="#">Copa América</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-            <div>
-                <ul class="nav nav-tabs justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#groupsPhase">Fase de Grupos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Octavos de Final</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Cuartos de Final</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Semifinales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Final</a>
-                    </li>
-                </ul>
-            </div>
+            
         </header>
 
         <!-- Tabs content -->
         <div id="groupsPhase" class="d-flex flex-column align-items-center">
+            <div id="titleTournament" class="p-2 d-flex flex-column align-items-center">
+            </div>
         </div>
 
         
@@ -134,10 +120,13 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/824bc11b23.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <script src="../assets/js/main.js"></script>
     <script>
-        initCopaAmerica();
+        initTournament();
     </script>
 </body>
 
