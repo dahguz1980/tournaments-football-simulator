@@ -371,6 +371,7 @@ function updateResults(e) {
 
         // validar que los datos ingresados sean numericos 
         if (!validateIsValidGoal(inputLocal.value) || !validateIsValidGoal(inputVisitor.value)) {
+            createMessage("Datos Ingresados Incorrectos, por favor ingrese sólo números",0)
             isInvalid = true;
         }
 
@@ -431,11 +432,13 @@ function updateResults(e) {
         }
 
 
-        // Actualizar la tabla de grupos correspondiente
-
-        let divStanding = document.getElementById(`div-standing-${group.name}`);
-        divStanding.innerHTML = ''
-        sim.createTableStanding(divStanding, group);
+        // Actualizar las tablas de grupos 
+        sim.groups.forEach(g => {
+            let divStanding = document.getElementById(`div-standing-${g.name}`);
+            divStanding.innerHTML = ''
+            sim.createTableStanding(divStanding, g);
+        })
+       
 
     }
 
@@ -476,14 +479,17 @@ function sortTeams(teams) {
 
 // Función para obtener el mejor tercero según las reglas de la UEFA
 function getBestThird(groups) {
-    // Obtener todos los equipos terceros
+    // Obtener todos los equipos terceros y los desmarco (por si estaban marcados por datos anteriores)
     const third = groups.map(group => group.teams[2])
+    unmarkTeamsClasified(third)
 
     // ordenedas los equipos seleccionadoss
     sortTeams(third);
 
     // Tomar los cuatro mejores terceros
     const bestThird = third.slice(0, sim.qtyThirdTeamsClasified);
+
+    // se marcan los mejores terceros segun qtyThirdTeamsClasified
     markTeamsClasified(bestThird, true);
 
 
@@ -537,7 +543,7 @@ function createMessage (message, type) {
         position: "right", // `right`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-          background: type==1?'green':'red',
+          background: type==1?'green':'#990F02',
         }
       }).showToast();
 }
