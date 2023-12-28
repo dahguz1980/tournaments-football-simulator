@@ -1,5 +1,5 @@
 let sim;
-const TOURNAMENT_DATA_URL = "http://129.146.176.182:3000/ft/api/tournaments/list/"
+const TOURNAMENT_DATA_URL = "https://129.146.176.182:3000/ft/api/tournaments/list/"
 
 class Simulator {
     constructor(name, tournamentName, date_init, date_end, countries, qtyTeamsClasified, qtyThirdTeamsClasified, groups) {
