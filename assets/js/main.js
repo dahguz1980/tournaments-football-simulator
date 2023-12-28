@@ -367,13 +367,28 @@ function updateResults(e) {
     let [inputLocal, inputVisitor] = e;
 
     // Validar si ambos input ya contienen datos validos
-    if (inputLocal != undefined && inputVisitor != undefined) {
+    if (inputLocal.value != undefined && inputVisitor.value != undefined) {
+        console.log(inputLocal)
+        console.log(inputVisitor)
 
         // validar que los datos ingresados sean numericos 
-        if (!validateIsValidGoal(inputLocal.value) || !validateIsValidGoal(inputVisitor.value)) {
-            createMessage("Datos Ingresados Incorrectos, por favor ingrese sólo números",0)
+        if (!validateIsValidGoal(inputLocal.value)) {
             isInvalid = true;
+
+            if (inputLocal.value != '') {
+                createMessage("Goles Locales Ingresados Incorrectos, por favor ingrese sólo números",0)
+            }
+
+        } 
+        
+        if (!validateIsValidGoal(inputVisitor.value)) {
+            isInvalid = true;
+            if (inputVisitor.value != '') {
+                createMessage("Goles Visitante Ingresados Incorrectos, por favor ingrese sólo números",0)
+                
+            }
         }
+            
 
         //1.- Se obtiene el ID de cada formulario , el ID es de la forma .-. GRUPO_EQUIPOS_VISITOR/LOCAL
         let inputTeamLocalInfo = inputLocal.id.split("_");
@@ -401,7 +416,7 @@ function updateResults(e) {
                         game.updateGoals(-1, -1)
                     } else {
                         game.updateGoals(parseInt(inputLocal.value), parseInt(inputVisitor.value));
-                        createMessage("Resultado Actualizado Correctamente",1)
+                        createMessage("Resultados de Juego Actualizado Correctamente",1)
                     }
 
                     // se actualizan los puntos de cada equipo
